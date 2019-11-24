@@ -1,0 +1,24 @@
+{
+    "users":[
+        {
+            "id":1,
+            "phone":"15622158666"
+        },
+        {
+            "id":2,
+            "phone":"18180055588"
+        }
+    ],
+    "userprofiles":[
+        {
+            "id":1,
+            "userid":1,
+            "name":"lijinyuan"
+        },
+        {
+            "id":2,
+            "userid":2,
+            "name":"abcd"
+        }
+    ]
+}
