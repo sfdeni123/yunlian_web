@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>编辑</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+	</head>
+
+	<body class="childrenBody">
+		<div class="layui-form">
+			<div class="layui-form-item typeItem" style="display: none;">
+				<label class="layui-form-label">项目</label>
+				<div class="layui-input-block">
+					<select class="typeList"  name="typeId">
+						<option value="">请选择</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">用途名</label>
+				<div class="layui-input-block">
+					<input name="name"  placeholder="请输入用途名" autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">单价￥</label>
+				<div class="layui-input-block">
+					<input name="per_money"  placeholder="请输入单价" autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">数量</label>
+				<div class="layui-input-block">
+					<input name="count"  placeholder="请输入数量" autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">想法</label>
+				<div class="layui-input-block">
+					<textarea name="plan"  placeholder="请输入想法" autocomplete="off" class="layui-input" lay-verify="required"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">期望</label>
+				<div class="layui-input-block">
+					<textarea name="expect"  placeholder="请输入期望" autocomplete="off" class="layui-input" lay-verify="required"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">开始日期</label>
+				<div class="layui-input-block">
+					<input name="start_time"  type="text"  placeholder="请输入开始日期" autocomplete="off" class="layui-input" lay-verify="required" readonly="readonly">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">结束日期</label>
+				<div class="layui-input-block">
+					<input  type="text"  name="end_time" placeholder="请选择日期"  class="layui-input" readonly="readonly">
+				</div>
+			</div>
+			<div class="layui-form-item saveBtnItem">
+				<div class="layui-input-block">
+					<button class="layui-btn saveBtn" lay-submit lay-filter="save">确定</button>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/financial/financaial_bill_edit.js"></script>
+		
+	</body>
+
+</html>

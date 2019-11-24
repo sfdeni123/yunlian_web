@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>编辑</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+	</head>
+
+	<body class="childrenBody">
+		<div class="layui-form">
+			<div class="layui-form-item">
+				<label class="layui-form-label">矿机名</label>
+				<div class="layui-input-block">
+					<input name="name"  placeholder="请输入矿机名" autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">算力(T)</label>
+				<div class="layui-input-block">
+					<input name="hashrate"  placeholder="请输入算力" autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">数量</label>
+				<div class="layui-input-block">
+					<input name="count"  placeholder="请输入数量" autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">每T收益(￥)</label>
+				<div class="layui-input-block">
+					<textarea name="earningPer"  placeholder="请输入每T收益" autocomplete="off" class="layui-input" lay-verify="required"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">电费(￥)</label>
+				<div class="layui-input-block">
+					<textarea name="electricity"  placeholder="电费" autocomplete="off" class="layui-input" lay-verify="required"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">每日产币</label>
+				<div class="layui-input-block">
+					<input name="coinOneDay"  type="text"  placeholder="请输入" autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item saveBtnItem">
+				<div class="layui-input-block">
+					<button class="layui-btn saveBtn" lay-submit lay-filter="save">确定</button>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/financial/financaial_bill_edit.js"></script>
+		
+	</body>
+
+</html>

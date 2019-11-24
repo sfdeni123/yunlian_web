@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Home</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="all,follow">
+		<!-- Bootstrap CSS-->
+		<link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome CSS-->
+		<link rel="stylesheet" href="../../vendor/font-awesome/css/font-awesome.min.css">
+		<!-- Fontastic Custom icon font-->
+		<link rel="stylesheet" href="../../css/fontastic.css">
+		<!-- Google fonts - Poppins -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+		<!-- theme stylesheet-->
+		<link rel="stylesheet" href="../../css/style.default.css" id="theme-stylesheet">
+		<!-- Custom stylesheet - for your changes-->
+		<link rel="stylesheet" href="../../css/custom.css">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<!-- Tweaks for older IEs-->
+		<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        
+        <link rel="stylesheet" href="../../css/layui.css" media="all" />
+        <link rel="stylesheet" href="../../layui/css/layui.css" />
+		
+		<style type="text/css">
+			.payInfo-center{
+				text-align: center;
+				margin-top: 40px;
+			}
+			.payInfo-center .card div{
+				margin-top: 30px;
+			}
+		</style>
+	</head>
+
+	<body class="childrenBody">
+		
+		
+		<script type="text/html" id="infoBar">
+				<div class="layui-input-inline">
+					<select class="layui-select" name="typeList" lay-filter="typeInfo" lay-event="typeEvent">
+						<option value="">请选择</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-sm magl10" lay-filter="addInfo" lay-submit >添加记录</button>
+			<!--<span class="layui-badge">运营中心发布广告，用户付款到总公司，总公司确认审核通过播放</span>-->
+		</script>
+		
+		
+		<table id="moneyList" lay-filter="moneyList"></table>
+		
+		<script type="text/html" id="palyToolbar">
+			{{#
+				var str = "";
+				if(d.image != null){
+					str = `<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="paly">
+							<i class="layui-icon layui-icon-picture"></i>
+						</a>`;
+				}
+				return str;
+			}}
+		</script>
+		
+		<script type="text/html" id="barDemo">
+			{{#
+				if(d.status === 0){
+					var str = 
+							` <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+								<i class="layui-icon layui-icon-edit"></i>编辑
+							</a>
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">
+								<i class="layui-icon layui-icon-delete"></i>删除
+							</a>`;
+					return str;
+				}else if(d.status === 1){
+						var dom = `<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+									<i class="layui-icon layui-icon-edit"></i>编辑
+								</a>`;
+						return dom;
+				}
+			}}
+		</script>
+ 
+		<script type="text/html" id="categoryTpl">
+			{{#
+				if(d.category == 0){
+					return '<span class="layui-badge layui-bg-orange">支出</span>';
+				}else if(d.category == 1){
+					return '<span class="layui-badge layui-bg-green">收入</span>';
+				}
+				else if(d.category == 2){
+					return '<span class="layui-badge layui-bg-red">债务</span>';
+				}
+			}}
+		</script>
+		
+		<script type="text/html" id="statusTpl">
+			{{#
+				if (d.status == 0) {
+					return '<span class="layui-badge layui-bg-orange">待审核</span>';
+				} else if(d.status === 1) {
+					return '<span class="layui-badge layui-bg-green">正常</span>';
+				} else if(d.status === 2) {
+					return '<span class="layui-badge layui-bg-red">已拒绝</span>';
+				}
+			}}
+		</script>
+		
+	</body>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<script src="../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../vendor/popper.js/umd/popper.min.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../vendor/jquery.cookie/jquery.cookie.js"></script>
+	
+	<!--<script src="../../vendor/chart.js/Chart.min.js"></script>-->
+	<!--<script src="../../vendor/jquery-validation/jquery.validate.min.js"></script>-->
+	
+	<script src="../../vendor/jquery/ui.js"></script>
+	<script src="../../js/mcfish.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<!-- Main File-->
+	<script src="../../js/front.js"></script>
+	<script src="../../js/financial/financial_own.js"></script>
+	<!--<script src="../../js/charts-home.js"></script>-->
+</html>
