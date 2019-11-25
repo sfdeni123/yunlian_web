@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>设备分布</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="../layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../css/public.css" media="all" />
+		<style type="text/css">
+			#container {width:100%; height: 700px; }
+		</style>
+	</head>
+
+	<body class="childrenBody">
+		<blockquote class="layui-elem-quote quoteBox">
+			<div class="layui-form">
+				<div class="layui-inline">
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="sno" placeholder="请输入设备编号" />
+					</div>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="agentName" placeholder="请输入机主名" />
+					</div>
+					<div class="layui-input-inline">
+						<select class="layui-select" name="online">
+							<option value="">设备在线状态</option>
+							<option value="0">离线</option>
+							<option value="1">在线</option>
+						</select>
+					</div>
+					<div class="layui-input-inline">
+						<select class="layui-select" name="status">
+							<option value="">设备状态</option>
+							<option value="0">正常</option>
+							<option value="1">故障</option>
+							<option value="2">异常</option>
+						</select>
+					</div>
+					<button class="layui-btn" lay-submit lay-filter="submit">
+						<i class="layui-icon layui-icon-search"></i>
+					</button>
+					<button class="layui-btn layui-btn-normal" lay-submit lay-filter="add">添加</button>
+				</div>
+			</div>
+		</blockquote>
+		<div class="layui-fluid pad0">
+			<div class="layui-row" id="container"></div>
+		</div>
+		<script type="text/javascript" src="../layui/layui.js"></script>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=73aad98e19508dccb5fd46366de00417"></script>
+		<script type="text/javascript" src="../js/map/list.js?v=1.1.1"></script>
+	</body>
+
+</html>

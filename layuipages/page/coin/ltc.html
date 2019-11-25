@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/public.css" media="all" />
+		<style type="text/css">
+			.layuiadmin-badge{
+				top: 50%;
+				margin-top: -9px;
+				position: absolute;
+				right: 15px;
+			}
+			.layuiadmin-card-list{
+				padding: 15px;
+			}
+			.layuiadmin-card-list p.layuiadmin-big-font,span.layuiadmin-big-font {
+				font-size: 36px;
+				color: #666666;
+				line-height: 36px;
+				padding: 5px 0 10px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				word-break: break-all;
+				white-space: nowrap;
+			}
+			.auth,.height75{
+				height: 75px;
+			}
+			.layuiadmin-span-color{
+				font-size: 14px;
+				position: absolute;
+				right: 15px;
+			}
+			.layuiadmin-span-color i{
+				padding-left: 5px;
+			}
+			.childrenBody{
+				background-color: #f2f2f2;
+			}
+			.center-info{
+				height: 75px;
+			}
+			.center-info p{
+				display: table;
+				margin-top: 5px;
+			}
+			.withdraw{
+				position: absolute;
+				right: 30px;
+			}
+		</style>
+	</head>
+
+	<body class="childrenBody">
+		<blockquote class="layui-elem-quote layui-bg-green">
+			<div id="nowTime"></div>
+		</blockquote>
+		<div class="layui-fluid pad0">
+			<div class="layui-row layui-col-space15">
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							合约名称
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font instrument_id">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							当前价格
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font last">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							开仓平均价
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font avg_cost">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							账户权益
+							<!--<span class="layui-badge layui-bg-blue layuiadmin-badge">官方地址</span>-->
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<p class="layuiadmin-big-font equity">暂无</p>
+						</div>
+					</div>
+				</div>
+
+
+	
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							账户余额
+							<!--<span class="layui-badge layui-bg-blue layuiadmin-badge">总</span>-->
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+
+							<p class="layuiadmin-big-font total_avail_balance">0</p>
+
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							已用保证金
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font margin">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							已用保证金
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font margin">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							已结算收益
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font settled_pnl">0</span>
+					
+						</div>
+					</div>
+				</div>
+			
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							未实现盈亏
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font unrealized_pnl">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							保证金率
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font margin_ratio">0</span>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							预估强平价
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font liquidation_price">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				<div class="layui-col-sm6 layui-col-md3">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							持仓数量
+						</div>
+						<div class="layui-card-body layuiadmin-card-list auth">
+							<span class="layuiadmin-big-font position">0</span>
+					
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+
+		<!--<table id="txid" lay-filter="test"></table>-->
+		<script type="text/html" id="statusTpl">
+			{{#
+				if (d.status == 1) {
+					return '<span class="layui-badge layui-bg-green">正常</span>';
+				} else {
+					return '<span class="layui-badge">未记录</span>';
+				}
+			}}
+		</script>
+		
+		<script type="text/html" id="amountTpl">
+			{{#
+				if (d.amount == null || d.amount == '') {
+					return '未知';
+				} else {
+					return d.amount;
+				}
+			}}
+		</script>
+		<script type="text/javascript" src="../../js/modules/echarts/echarts.min.js"></script>
+		<script type="text/javascript" src="../../js/modules/echarts/infographic.js"></script>
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/coin/ltc.js"></script>
+	</body>
+
+</html>

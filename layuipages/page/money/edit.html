@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>编辑</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/public.css" media="all" />
+	</head>
+
+	<body class="childrenBody">
+		<div class="layui-form" lay-filter="adsForm">
+			<div class="layui-form-item idItem" style="display: none;">
+				<label class="layui-form-label">记录编号</label>
+				<div class="layui-input-block">
+					<input autocomplete="off" class="layui-input layui-bg-gray" name="id" placeholder="" type="text" disabled="disabled" readonly="readonly">
+				</div>
+			</div>
+			
+			<div class="layui-form-item adminItem" style="display: none;">
+				<label class="layui-form-label">记录者</label>
+				<div class="layui-input-block">
+					<select class=""  name="adminList"  lay-filter="adminList">
+						<option value="">请选择</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">项目</label>
+				<div class="layui-input-block">
+					<select class="" name="typeList" lay-filter="typeList">
+						<option value="">请选择</option>
+					</select>
+				</div>
+			</div>
+			
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">用途</label>
+				<div class="layui-input-block">
+					<select class="" name="useList" lay-filter="useList">
+						<option value="">请选择</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">类型</label>
+				<div class="layui-input-block">
+					<div class="">
+						<select name="category" lay-filter="category" >
+							<option selected="" value="">请选择</option>
+							<option value="0">支出</option>
+							<option value="1">收入</option>
+							<option value="2">债务</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">时间</label>
+				<div class="layui-input-block">
+					<input id="moneyTime"  type="text"  name="moneyTime" placeholder="请选择日期"  class="layui-input" readonly="readonly" lay-key="-1">
+				</div>
+			</div>
+			
+			<div class="layui-form-item" id="moneyHide" style="display: none;">
+				<label class="layui-form-label">金额</label>
+				<div class="layui-input-block">
+					<input type="text" placeholder="请输入金额" autocomplete="off" class="layui-input " name="money" lay-verify="money">
+				</div>
+			</div>
+			<div class="layui-form-item" id="receivableHide" style="display: none;">
+				<label class="layui-form-label">应收金额</label>
+				<div class="layui-input-block">
+					<input type="text" placeholder="请输入应收金额" autocomplete="off" class="layui-input " name="receivable" lay-verify="money" >
+				</div>
+			</div>
+			<div class="layui-form-item" id="payHide" style="display: none;">
+				<label class="layui-form-label">实收金额</label>
+				<div class="layui-input-block">
+					<input type="text" placeholder="请输入实收金额" autocomplete="off" class="layui-input " name="pay" lay-verify="money" >
+				</div>
+			</div>
+
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">内容</label>
+				<div class="layui-input-block">
+					<div class="mime"></div>
+					<button type="button" class="layui-btn" name="imgUpload">
+						<i class="layui-icon">&#xe67c;</i>上传文件
+					</button>
+					<!--<span class="layui-badge layui-bg-orange layui-hide info">图片分辨率：1024*600</span>-->
+				</div>
+			</div>
+			
+			
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea name="comment" placeholder="请输入备注" class="layui-textarea"></textarea>
+                </div>
+            </div>
+			<div class="layui-form-item createTimeItem">
+				<label class="layui-form-label">创建时间</label>
+				<div class="layui-input-block">
+					<input type="text" mc-type="laydate" name="createTime" placeholder="请选择日期" autocomplete="off" class="magicalcoder-laydate layui-input layui-bg-gray" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" lay-key="91" disabled="disabled" readonly="readonly">
+				</div>
+			</div>
+			<div class="layui-form-item saveBtnItem">
+				<div class="layui-input-block">
+					<button class="layui-btn saveBtn" lay-submit lay-filter="save">确定</button>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/money/edit.js"></script>
+	</body>
+
+</html>

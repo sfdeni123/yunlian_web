@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vuedemo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="userdiv">
+        <button id="adduser" @click="addUser">新增</button>
+        <table>
+            <tr v-for="(user,userkey) in users" :key="userkey">
+                <td><input type="text" v-model="user.id" ></td>
+                <td><input v-model="user.phone"></td>
+                <td><button @click="delUser(user.id)">删除</button></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var userdiv = new Vue({
+            el: "#userdiv",
+            data: {
+                users: [],
+                userprofiles: {}
+            },
+            methods:{
+                delUser(id){
+                    console.log(id)
+                    var index = this.users.findIndex(item=>{
+                        if (item.id==id)
+                            return true;
+                    });
+                    this.users.splice(index,1);
+                },
+                addUser(){
+                    this.users.push({
+                        id:0,
+                        phone:'1'
+                    })
+                },
+                postUsers(userItem){
+                    fetch('http://localhost:3000/users',{
+                        method:'post',
+                        body:JSON.stringify(userItem),
+                        headers:new Headers({
+                            'Content-Type':'application/json'
+                        })
+                    })
+                }
+            },
+            created() {
+                fetch('http://localhost:3000/users', {method: 'get'})
+                .then(response => response.json()).then(data => {
+                    console.log(data)
+                    this.users = data
+                }).catch(err=>{
+                    console.error('getuserserr', err)
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

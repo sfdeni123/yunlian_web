@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>编辑</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/public.css" media="all" />
+	</head>
+
+	<body class="childrenBody">
+		<div class="layui-form" lay-filter="adsForm">
+			<div class="layui-form-item idItem">
+				<label class="layui-form-label">电话</label>
+				<div class="layui-input-block">
+					<input autocomplete="off" class="layui-input" name="phone" placeholder="" type="text" lay-verify="required">
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">验证码</label>
+				<div class="layui-input-block">
+					<input type="text" placeholder="请输入验证码" autocomplete="off" class="layui-input " name="code" lay-verify="money" >
+				</div>
+			</div>
+
+			<div class="layui-form-item saveBtnItem">
+				<div class="layui-input-block">
+					<button class="layui-btn layui-btn-xs layui-btn-radius" lay-submit lay-filter="pushCode" id="pushCode">发送验证码</button>
+				</div>
+			</div>
+			
+			<div class="layui-form-item idItem">
+				<label class="layui-form-label">密码</label>
+				<div class="layui-input-block">
+					<input autocomplete="off" class="layui-input" name="password" placeholder="" type="password">
+				</div>
+			</div>
+			
+			<div class="layui-form-item idItem">
+				<label class="layui-form-label">确认密码</label>
+				<div class="layui-input-block">
+					<input autocomplete="off" class="layui-input" name="sure_password" placeholder="" type="password">
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item idItem">
+				<label class="layui-form-label">名称</label>
+				<div class="layui-input-block">
+					<input autocomplete="off" class="layui-input" name="name" placeholder="" type="text">
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-block">
+					<div class="">
+						<select name="sex" lay-filter="category" >
+							<option selected="" value="">请选择</option>
+							<option value="0">保密</option>
+							<option value="1">男</option>
+							<option value="2">女</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item saveBtnItem">
+				<div class="layui-input-block">
+					<button class="layui-btn saveBtn" lay-submit lay-filter="save">确定</button>
+				</div>
+			</div>
+	
+		</div>
+
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/reg/reg.js"></script>
+	</body>
+
+</html>
