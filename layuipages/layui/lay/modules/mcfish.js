@@ -135,9 +135,9 @@ layui.define('jquery', function(exports) {
 				,dataType: "json"
 				,data: data
 				,beforeSend: function(request) {
-		            if(layui.sessionData("hdcm_operation") != null){
-						request.setRequestHeader("id",layui.sessionData("hdcm_operation").user.id);
-		            	request.setRequestHeader("token",layui.sessionData("hdcm_operation").user.token);
+		            if(layui.data("hdcm_operation") != null){
+						request.setRequestHeader("id",layui.data("hdcm_operation").user.id);
+		            	request.setRequestHeader("token",layui.data("hdcm_operation").user.token);
 					}
 		        }
 				,success: function(result) {
@@ -186,9 +186,9 @@ layui.define('jquery', function(exports) {
 				, dataType: "json"
 				, data: data
 				,beforeSend: function(request) {
-					if(layui.sessionData("hdcm_operation").user != null){
-						request.setRequestHeader("id",layui.sessionData("hdcm_operation").user.id);
-		            	request.setRequestHeader("token",layui.sessionData("hdcm_operation").user.token);
+					if(layui.data("hdcm_operation").user != null){
+						request.setRequestHeader("id",layui.data("hdcm_operation").user.id);
+		            	request.setRequestHeader("token",layui.data("hdcm_operation").user.token);
 					}
 
 		        }

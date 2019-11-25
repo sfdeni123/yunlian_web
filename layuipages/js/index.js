@@ -73,7 +73,7 @@ layui.config({
 	});
 
 	//加载左侧菜单
-    dataStr = layui.sessionData("hdcm_operation").user.menuList;
+    dataStr = layui.data("hdcm_operation").user.menuList;
     tab.render();
 
 	//隐藏左侧导航
@@ -88,7 +88,6 @@ layui.config({
 		tab.tabMove();
 
         var i = $(this).find("i");
-        console.log(i);
         if(i.hasClass("layui-icon-shrink-right")){
         	$(".layui-layout-left").css({left:"0px"});
             i.removeClass("layui-icon-shrink-right");
@@ -99,7 +98,21 @@ layui.config({
             i.addClass("layui-icon-shrink-right");
         }
 	});
-
+	
+	$(".navBar").click(function(){
+		var icon = $("#LAY_app_flexible");
+    	$(".layui-layout-admin").toggleClass("showMenu");
+    	if(icon.hasClass("layui-icon-shrink-right")){
+        	$(".layui-layout-left").css({left:"0px"});
+            icon.removeClass("layui-icon-shrink-right");
+            icon.addClass("layui-icon-spread-left")
+        }else{
+        	$(".layui-layout-left").css({left:"200px"});
+		    icon.removeClass("layui-icon-spread-left")
+	        icon.addClass("layui-icon-shrink-right");
+        }
+		
+	})
 	//通过顶部菜单获取左侧二三级菜单（默认）
 	$(".topLevelMenus li:first").click();
 
@@ -181,41 +194,43 @@ layui.config({
 	
 	
 
-	function handleTouchEvent(event) {
-    //只跟踪一次触摸
-    if (event.touches.length == 1) {
-        switch (event.type) {
-            case "touchstart":
-   				var icon = $("#LAY_app_flexible");
-                if(event.touches[0].clientX > window.screen.width/2){
-                	$(".layui-layout-admin").toggleClass("showMenu");
-                	if(icon.hasClass("layui-icon-shrink-right")){
-			        	$(".layui-layout-left").css({left:"0px"});
-			            icon.removeClass("layui-icon-shrink-right");
-			            icon.addClass("layui-icon-spread-left")
-			        }else{
-			        	$(".layui-layout-left").css({left:"200px"});
-			            icon.removeClass("layui-icon-spread-left")
-			            icon.addClass("layui-icon-shrink-right");
-			        }
-                }
+//	function handleTouchEvent(event) {
+//  //只跟踪一次触摸
+//  if (event.touches.length == 1) {
+//      switch (event.type) {
+//          case "touchstart":
+// 				var icon = $("#LAY_app_flexible");
+//              if(event.touches[0].clientX > window.screen.width/2){
+//              	$(".layui-layout-admin").toggleClass("showMenu");
+//              	if(icon.hasClass("layui-icon-shrink-right")){
+//			        	$(".layui-layout-left").css({left:"0px"});
+//			            icon.removeClass("layui-icon-shrink-right");
+//			            icon.addClass("layui-icon-spread-left")
+//			        }else{
+//			        	$(".layui-layout-left").css({left:"200px"});
+//			            icon.removeClass("layui-icon-spread-left")
+//			            icon.addClass("layui-icon-shrink-right");
+//			        }
+//              }
+//		
+//              break;
+//
+//	        }
+//	    }
+//	}
+//	document.addEventListener("touchstart", handleTouchEvent, false);
+
+
+	//打开新窗口
+	function addTab(_this) {$(this).siblings().length
+		tab.tabAdd(_this);
 		
-                break;
 
-	        }
-	    }
 	}
-	document.addEventListener("touchstart", handleTouchEvent, false);
-			
-			
-
 });
 
 
-//打开新窗口
-function addTab(_this) {
-	tab.tabAdd(_this);
-}
+
 
 
 
