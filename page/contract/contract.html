@@ -181,6 +181,7 @@
 								<label class="form-control-label myLable">{{ buy_value }}</label>
 							</div>
 							<button type="button" class="btn btn-primary btn-sm" @click="updateStop()" id="stopBtn">{{ stopValue }}</button>
+							<button type="button" class="btn btn-primary btn-sm" @click="showAddOrder()" id="stopBtn">开仓</button>
 							<!--<button type="button" class="btn btn-primary btn-sm" @click="updateFrom()">设置账户</button>-->
 							<button type="button" class="btn btn-primary btn-sm" @click="updateUsdtNum()" style="position: absolute;right: 20px;">设置下次购买总额</button>
 						</div>
@@ -312,20 +313,16 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">新增</h4>
+						<h4 class="modal-title" id="myModalLabel"></h4>
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="txt_departmentname">开仓价($)</label>
-							<input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="请输入价格">
+							<input type="text" name="txt_departmentname" class="form-control" id="addOrderValue" placeholder="请输入价格">
 						</div>
 						<div class="form-group">
-							<label for="txt_parentdepartment">杠杆倍数</label>
-							<input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="请输入杠杆倍数">
-						</div>
-						<div class="form-group">
-							<label for="txt_departmentlevel">仓位</label>
-							<input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="请输入仓位(1~10)">
+							<label for="txt_departmentlevel">USDT数量</label>
+							<input type="text" name="txt_departmentlevel" class="form-control" id="addOrderUsdtCount" placeholder="请输入USDT数量">
 						</div>
 					</div>
 					<div class="modal-footer">

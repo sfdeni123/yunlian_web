@@ -51,7 +51,6 @@ layui.use(['form', 'layer', 'jquery', 'mcfish'], function() {
 	}
 
 	function addUser(data){
-		
 		 mcfish.post("user/addUser",data,function () {
 //          var index = parent.layer.getFrameIndex(window.name);
 			window.location.href = "login.html";

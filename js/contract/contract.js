@@ -43,9 +43,8 @@ var app = new Vue({
 		addOrder(){
 			var data = {};
         	data.coin = app.$data.coin;
-        	data.value =  $("#txt_departmentname").val();
-        	data.leverage =  $("#txt_parentdepartment").val();
-        	data.ceng =  $("#txt_departmentlevel").val();
+        	data.value =  $("#addOrderValue").val();
+        	data.usdt =  $("#addOrderUsdtCount").val();
         	console.log(data);
 			mcfish.API.asyncRequest("system/addOrder","POST",data).then(function(res){
 				$("#addOrder").modal();
@@ -235,7 +234,7 @@ function getComment(){
 	    }
 	});
 	
-	setTimeout("getComment()", 10000);
+//	setTimeout("getComment()", 10000);
 }
 
 //打开开仓窗口
@@ -315,7 +314,7 @@ function getCoinLog(coin){
 }
 
 function getStop(){
-	mcfish.API.asyncRequest("system/getStop","GET",{}).then(function(res){
+	mcfish.API.asyncRequest("system/getStop","GET",{coin:app.$data.coin}).then(function(res){
 		if(res.data == 0){
 			app.$data.stopValue = "暂停";
 		}else if(res.data == 1){

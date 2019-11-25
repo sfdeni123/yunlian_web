@@ -33,8 +33,8 @@ layui.use(['form', 'layer', 'jquery', 'mcfish'], function() {
 
 	function loginPage(data){
 		$.ajax({
-//			url: "http://127.0.0.1:9000/user/login",
-			url: "http://47.52.34.187:9000/user/login",
+			url: "http://127.0.0.1:9000/user/login",
+//			url: "http://47.52.34.187:9000/user/login",
 			type: "post",
 			data: data,
 			scriptCharset: 'UTF-8',
