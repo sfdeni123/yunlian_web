@@ -5,7 +5,7 @@
   "homeInfo": {
     "title": "首页",
     "icon": "fa fa-home",
-    "href": "user/userinfo.html"
+    "href": "page/user/userinfo.html"
   },
   "logoInfo": {
     "title": "财务管理",
