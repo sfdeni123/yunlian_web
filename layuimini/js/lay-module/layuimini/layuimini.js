@@ -152,6 +152,8 @@ layui.define(["element", "jquery"], function (exports) {
                                     html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>';
                                     html = buildChildHtml(html, childMenu.child, menuParameId);
                                 } else {
+//                              	if(menuParameId == 1)
+//                              		continue;
                                     html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.href + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>\n';
                                     menuParameId++;
                                     window.menuParameId = menuParameId;
@@ -675,6 +677,7 @@ layui.define(["element", "jquery"], function (exports) {
      * 打开新窗口
      */
     $('body').on('click', '[data-tab]', function () {
+    	
         var loading = layer.load(0, {shade: false, time: 2 * 1000});
         var tabId = $(this).attr('data-tab'),
             href = $(this).attr('data-tab'),
@@ -723,6 +726,7 @@ layui.define(["element", "jquery"], function (exports) {
      * 在iframe子菜单上打开新窗口
      */
     $('body').on('click', '[data-iframe-tab]', function () {
+    	
         var loading = parent.layer.load(0, {shade: false, time: 2 * 1000});
         var tabId = $(this).attr('data-iframe-tab'),
             href = $(this).attr('data-iframe-tab'),
@@ -762,6 +766,7 @@ layui.define(["element", "jquery"], function (exports) {
      * 左侧菜单的切换
      */
     $('body').on('click', '[data-menu]', function () {
+    	console.log("change")
         var loading = layer.load(0, {shade: false, time: 2 * 1000});
         $parent = $(this).parent();
         menuId = $(this).attr('data-menu');
@@ -773,6 +778,24 @@ layui.define(["element", "jquery"], function (exports) {
         $(".layui-left-menu .layui-nav.layui-nav-tree.layui-this.layui-hide").removeClass('layui-this');
         $("#" + menuId).removeClass('layui-hide');
         $("#" + menuId).addClass('layui-this');
+        
+        //danying add//
+        var loading2 = layer.load(0, {shade: false, time: 2 * 1000});
+        var isShow = $(this).attr('data-side-fold');
+        if (isShow == 1) { // 缩放
+            $(this).attr('data-side-fold', 0);
+            $('.layuimini-tool i').attr('class', 'fa fa-indent');
+            $('.layui-layout-body').attr('class', 'layui-layout-body layuimini-mini');
+        } else { // 正常
+            $(this).attr('data-side-fold', 1);
+            $('.layuimini-tool i').attr('class', 'fa fa-outdent');
+            $('.layui-layout-body').attr('class', 'layui-layout-body layuimini-all');
+        }
+        layuimini.tabRoll();
+        element.init();
+        layer.close(loading2);
+        //end//
+        
         layer.close(loading);
     });
 
@@ -831,6 +854,8 @@ layui.define(["element", "jquery"], function (exports) {
                 }
             }
         });
+        
+      
         layuimini.tabRoll();
         layer.close(loading);
     });
@@ -839,6 +864,7 @@ layui.define(["element", "jquery"], function (exports) {
      * 菜单栏缩放
      */
     $('body').on('click', '[data-side-fold]', function () {
+    	
         var loading = layer.load(0, {shade: false, time: 2 * 1000});
         var isShow = $(this).attr('data-side-fold');
         if (isShow == 1) { // 缩放

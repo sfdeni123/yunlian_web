@@ -5,7 +5,7 @@
   "homeInfo": {
     "title": "首页",
     "icon": "fa fa-home",
-    "href": "user/userinfo.html"
+    "href": "welcome.html"
   },
   "logoInfo": {
     "title": "财务管理",
@@ -23,7 +23,7 @@
         "target": "_self",
         "child": [{
             "title": "仓位",
-            "href": "page/welcome-1.html",
+            "href": "page/contract/contract.html",
             "icon": "fa fa-tachometer",
             "target": "_self"
           },
