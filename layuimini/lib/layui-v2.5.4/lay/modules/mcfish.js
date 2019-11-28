@@ -22,11 +22,11 @@ layui.define('jquery', function(exports) {
 		,getReqUri: function () {
 			if(window.location.href.indexOf(pName) != -1){
 //				return "/" + pName;
-//				return "http://47.52.34.187:9002";
-				return "http://127.0.0.1:9002";
+				return "http://47.52.34.187:9002";
+//				return "http://127.0.0.1:9002";
 			}else{
-				return "http://127.0.0.1:9002";
-//              return "http://47.52.34.187:9002";
+//				return "http://127.0.0.1:9002";
+                return "http://47.52.34.187:9002";
             }
 		}
 		/** 

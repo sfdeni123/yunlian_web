@@ -102,10 +102,15 @@
 
         layuimini.init('api/init.json');
 
+		
+		const user = layui.data("yunlian_user").user;
+		if(user == null || user == undefined){
+			window.location.href = "login.html";
+		}
         $('.login-out').on("click", function () {
         	layui.data('yunlian_user', {key: 'user',remove: true});
             layer.msg('退出登录成功', function () {
-                window.location = 'login.html';
+                window.location.href = 'login.html';
             });
         });
     });

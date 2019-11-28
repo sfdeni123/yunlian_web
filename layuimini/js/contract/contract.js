@@ -43,11 +43,14 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
 				getCoinMsg($("#selectCoin").val());
 				getCoinLog($("#selectCoin").val());
 				getStop();
-				tableIns.reload({
-					where:{
-						coin:this.coin
-					}
+				setTimeout(function(){
+					tableIns.reload({
+						where:{
+							coin:app.$data.coin
+						}
 				});
+				},500);
+				
 			},
 			buyCoin(){
 				var data = {};
@@ -355,7 +358,6 @@ function getCoinMsg(coin){
 	data.coin = coin;
 	data.phone = phone;
 	mcfish.get("main/getNow",data,function(res){
-//	mcfish.API.asyncRequest("main/getNow","GET",data).then(function(res){
 		if(res.data != null && res.data != ''){
     		app.$data.last = res.data.last;
     		app.$data.avg_cost = res.data.avg_cost;
@@ -370,8 +372,14 @@ function getCoinMsg(coin){
 			app.$data.usdt_from = res.data.from;
 			app.$data.usdt_from_text = res.data.from==0?"币币账户":"资金账户";
 			
+			
+			if(app.$data.position != 0){
+				$("#addOrder").attr("disabled",true);
+			}
 	    }
 	});
+	
+	
 }
 
 
@@ -478,28 +486,53 @@ function openSurePassword(callback){
         ,defaultToolbar: ["filter"]
         ,id: "coinBuyList"
         ,cols: [[
-            {field: 'id', title: '编号', sort: true,width: 80}
-            ,{field: 'value', title: '买入价', width: 120,templet: function (d) {
+            {field: 'value', title: '买价', width: 80,templet: function (d) {
                     return (d.value*1).toFixed(3);
              	 }
             }
-            ,{field: 'value', title: '+5%',width: 120,templet: function (d) {
-                    return (d.value * 105 /100).toFixed(3);
-             	 }
-            }
-            ,{field: 'value', title: '+10%', width:120, templet: function (d) {
-                    return (d.value * 110 /100).toFixed(3);
-             	 }
-            }
-            ,{field: 'num', title: '数量', width:100,templet:function(d){
+            ,{field: 'num', title: '买数量', width:80,templet:function(d){
             		return parseFloat(d.num).toFixed(3);
            		}
+            }
+            ,{field: 'value', title: '当前涨幅', width:100, templet: function (d) {
+                    return ((app.$data.last - d.value)/d.value*100).toFixed(2)+"%";
+             	 }
             }
             ,{field: 'isSell', title: '卖出', width:70,templet:function(d){
             		return d.isSell == 0?"未卖":"已卖"
             	}
             }
-            ,{fixed: 'right',title: '操作',minWidth:130, align: "center", toolbar: '#barDemo'}
+            ,{field: 'sellLast', title: '卖出价', width: 120,templet: function (d) {
+            		if(d.isSell == 1)
+                   	 	return (d.sellLast*1).toFixed(3);
+                   	else
+                   		return "";
+             	 }
+            }
+            ,{field: 'sell_last', title: '卖出数量', width: 120,templet: function (d) {
+            		if(d.isSell == 1)
+                   	 	return (d.num * 0.99).toFixed(3);
+                   	else
+                   		return "";
+             	 }
+            }
+            ,{field: 'num', title: '买入总金额', width:100,templet:function(d){
+            		return (d.num*d.value).toFixed(2);
+           		}
+            }
+            ,{field: 'num', title: '卖出总金额', width:100,templet:function(d){
+            			return d.isSell == 1?(d.sellLast *d.num * 0.99).toFixed(2):"";
+            		
+           		}
+            }
+            ,{field: 'sell_last', title: '利润约', width: 120,templet: function (d) {
+            		if(d.isSell == 1)
+                   	 	return ((d.sellLast *d.num * 0.99) - (d.num*d.value)).toFixed(2)+"USDT";
+                   	else
+                   		return "";
+             	 }
+            }
+            ,{fixed: 'right',title: '操作',minWidth:80, align: "center", toolbar: '#barDemo'}
         ]]
     });
    	
