@@ -37,7 +37,7 @@
         <div class="layui-form login-form">
             <form class="layui-form" action="">
                 <div class="layui-form-item logo-title">
-                    <h1>LayuiMini后台登录</h1>
+                    <h1>云链科技财务系统</h1>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
@@ -57,9 +57,9 @@
                 <div class="layui-form-item">
 					<span class="layadmin-link" id="reg" lay-filter="reg" style="color: #029789!important; cursor: pointer;">注册帐号</span>
 				</div>
-                <div class="layui-form-item">
+                <!--<div class="layui-form-item">
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
-                </div>
+                </div>-->
                 <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>
                 </div>
@@ -146,6 +146,7 @@
             }
             
             mcfish.post("user/login",data,function(res){
+            	layui.data('yunlian_user', {key: 'user',remove: true});
             	layui.data("yunlian_user",{key:"user",value:res.data});
             	var href = window.location.href;
             	console.log(href);

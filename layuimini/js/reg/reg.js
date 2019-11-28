@@ -56,6 +56,7 @@ layui.use(['form','layer','mcfish','laydate', 'upload'],function(){
 		param.type = 1;
 		maxtime = 60;
         mcfish.post("user/phoneCode",param,function () {
+        	layer.msg("验证码发送成功",{icon:1});
 //          var index = parent.layer.getFrameIndex(window.name);
 //          parent.layer.close(index);
 			$("#pushCode").attr("disabled","disabled"); 
@@ -81,6 +82,7 @@ layui.use(['form','layer','mcfish','laydate', 'upload'],function(){
 			return;
 		}
         mcfish.post("user/addUser",data.field,function () {
+        	layer.msg("注册成功",{icon:1});
             var index = parent.layer.getFrameIndex(window.name);
             parent.layer.close(index);
         });

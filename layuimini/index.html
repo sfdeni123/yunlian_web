@@ -44,7 +44,7 @@
                 <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
             </li>
             <li class="layui-nav-item layuimini-setting">
-                <a href="javascript:;">admin</a>
+                <a href="javascript:;" id="userName"></a>
                 <dl class="layui-nav-child">
                     <dd>
                         <a href="javascript:;" data-iframe-tab="page/user/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
@@ -107,6 +107,8 @@
 		if(user == null || user == undefined){
 			window.location.href = "login.html";
 		}
+		$("#userName").html(layui.data("yunlian_user").user.name);
+		
         $('.login-out').on("click", function () {
         	layui.data('yunlian_user', {key: 'user',remove: true});
             layer.msg('退出登录成功', function () {

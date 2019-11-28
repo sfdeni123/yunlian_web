@@ -13,10 +13,10 @@ layui.define('jquery', function(exports) {
 		//回到登录页
 		redirectLogin: function() {
             var href = window.location.href;
-            if(href.indexOf("tologin") != -1){
+            if(href.indexOf("login") != -1){
                 top.window.location.reload();
             }else{
-                top.window.location.href = mcfish.getReqUri() + "/tologin";
+                top.window.location.href = "http://47.52.34.187/login.html"
             }
 		}
 		,getReqUri: function () {
@@ -140,14 +140,13 @@ layui.define('jquery', function(exports) {
 					}
 		        }
 				,success: function(result) {
-					
                     if(result.code === 0) {
                         if(callback != null) {
                             callback(result)
                         } else {
-                            layer.msg(result.msg);
+//                          layer.msg(result.msg);
                         }
-                    } else if(result.code === 1110) {
+                    }else if (result.code === 105 || result.code === 106) {
                         layer.msg('登录已过期', {
                             icon: 4,
                             anim: 5
@@ -192,13 +191,14 @@ layui.define('jquery', function(exports) {
 
 		        }
 				, success: function (result) {
+					
 					if (result.code === 0) {
 						if (callback != null) {
 							callback(result)
 						} else {
-							layer.msg(result.msg);
+//							layer.msg(result.msg);
 						}
-					} else if (result.code === 1110) {
+					} else if (result.code === 105 || result.code === 106) {
 						layer.msg('登录已过期', {
 							icon: 4,
 							anim: 5

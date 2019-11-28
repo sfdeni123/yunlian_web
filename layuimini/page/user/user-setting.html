@@ -26,21 +26,21 @@
             <div class="layui-form-item">
                 <label class="layui-form-label required">Secret</label>
                 <div class="layui-input-block">
-                    <input type="number" name="secret" lay-verify="required" lay-reqtext="Secret不能为空" placeholder="请输入Secret"  value="" class="layui-input">
+                    <input type="text" name="secret" lay-verify="required" lay-reqtext="Secret不能为空" placeholder="请输入Secret"  value="" class="layui-input">
                 	<tip>填写OkEx的Secret。</tip>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label required">passphrase</label>
                 <div class="layui-input-block">
-                    <input type="email" name="passphrase"  placeholder="请输入passphrase"  value="" class="layui-input">
+                    <input type="text" name="passphrase"  placeholder="请输入passphrase"  value="" class="layui-input">
                 	<tip>填写OkEx的passphrase。</tip>
                 </div>
             </div>
              <div class="layui-form-item">
                 <label class="layui-form-label required">涨卖点</label>
                 <div class="layui-input-block">
-                    <input type="email" name="riseSell"  placeholder="涨多少个点卖"  value="" class="layui-input">
+                    <input type="number" name="riseSell"  placeholder="涨多少个点卖"  value="" class="layui-input">
                 	<tip>补仓现货涨多少个点卖(不低于6)</tip>
                 </div>
             </div>
@@ -54,16 +54,41 @@
 </div>
 <script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form','mcfish'], function () {
+    layui.use(['form','mcfish','jquery'], function () {
         var form = layui.form
+        	,$ = layui.jquery
         	,mcfish = layui.mcfish
             , layer = layui.layer;
             
+        console.log(layui.data("yunlian_user").user)
+        
+        if(layui.data("yunlian_user").user.isApikey == 1){
+        	$("[name='apikey']").val("************************************")
+        }
+        if(layui.data("yunlian_user").user.isSecret == 1){
+        	$("[name='secret']").val("************************************")
+        }
+        if(layui.data("yunlian_user").user.isPassphrase == 1){
+        	$("[name='passphrase']").val("*******************")
+        }
+        
+        $("[name='passphrase']").val(layui.data("yunlian_user").user.riseSell);
         //监听提交
         form.on('submit(saveBtn)', function (data) {
         	
-        	console.log(data.field);
-        	
+    	 	if(layui.data("yunlian_user").user.isApikey == 1){
+    	 		delete data.field.apikey;
+    	 	}
+    	 	if(layui.data("yunlian_user").user.isSecret == 1){
+        		delete data.field.secret;
+	        }
+	        if(layui.data("yunlian_user").user.isPassphrase == 1){
+	        	delete data.field.passphrase;
+	        }
+	        if(data.field.riseSell < 6){
+	        	layer.msg("涨卖点不能低于6",{icon,2});
+	        	return;
+	        }
         	mcfish.post("user/updateUser",data.field,function(res){
         		layer.msg(res.msg, {icon: 1});
         	});

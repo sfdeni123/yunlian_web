@@ -1,5 +1,4 @@
 var phone = JSON.parse(window.localStorage.getItem("yunlian_user")).user.phone;
-console.log("phone"+phone)
 var tableIns;
 
 
@@ -11,6 +10,26 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
         ,util = layui.util
         ,table = layui.table;
         
+    function IsPC() {
+	    var userAgentInfo = navigator.userAgent;
+	    var Agents = ["Android", "iPhone",
+	      "SymbianOS", "Windows Phone",
+	      "iPad", "iPod"];
+	    var flag = true;
+	    for (var v = 0; v < Agents.length; v++) {
+	      if (userAgentInfo.indexOf(Agents[v]) > 0) {
+	         flag = false;
+	         break;
+	      }
+	    }
+	    return flag;
+	}
+	
+
+	
+	var mywidth = IsPC()?"800px":window.screen.width+"px";
+	var myheight = IsPC()?"500px":window.screen.height/1.8+"px";
+	
         
 	var app = new Vue({
 		el: "#app",
@@ -33,10 +52,55 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
 			coin_log:"",
 			usdt_from:0,
 			usdt_from_text:"",
+			coin_avai:"0",
+			
 		},
 		methods: {
 			showAddOrder() {
-				showAddOrderPage();
+				layer.open({
+	                title: "买币"
+	                ,type: 1
+	                ,content:`
+	                		<form class="layui-form" action="">
+	                			<div class="layui-form-item">
+							    	<label class="layui-form-label">价格($)</label>
+							    	<div class="layui-input-block">
+							      		<input type="text" id="addOrderValue" name="title" required  lay-verify="required" placeholder="请输入价格" autocomplete="off" class="layui-input">
+							    	</div>
+								</div>
+								<div class="layui-form-item">
+							    	<label class="layui-form-label">USDT</label>
+							    	<div class="layui-input-block">
+							      		<input type="text" id="addOrderUsdtCount" name="title" required  lay-verify="required" placeholder="请输入USDT数量" autocomplete="off" class="layui-input">
+							    	</div>
+								</div>
+							</form>
+							`
+	//              ,maxmin: true
+	                ,offset: 'auto'
+	                ,area: [mywidth, 100]
+	                ,btn:["确定","取消"]
+	                ,anim: 5
+	                ,success: function (layero) {
+	                }
+	                ,yes:function(index,layero){
+	                	var data = {};
+			        	data.coin = app.$data.coin;
+			        	data.value =  $("#addOrderValue").val();
+			        	data.usdt =  $("#addOrderUsdtCount").val();
+			        	if(parseInt(data.usdt) > parseInt(app.$data.usdt_avail)){
+			        		layer.msg("余额不足", {icon: 2}); 
+			        		return;
+			        	}
+						mcfish.post("person/buyCoin",data,function(res){
+							layer.msg(res.msg, {icon: 1}); 
+							layer.close(index);
+						});
+	                }
+	                ,btn2:function(index,layero){
+	                	layer.close(index);
+	                }
+	            })
 			},
 			selectChange(){
 				this.coin = $("#selectCoin").val();
@@ -51,22 +115,6 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
 				});
 				},500);
 				
-			},
-			buyCoin(){
-				var data = {};
-	        	data.coin = app.$data.coin;
-	        	data.value =  $("#addOrderValue").val();
-	        	data.usdt =  $("#addOrderUsdtCount").val();
-	        	
-	        	if(parseInt(data.usdt) > parseInt(app.$data.usdt_avail)){
-	        		$("#addOrder").modal();
-	        		layer.msg("余额不足", {icon: 2}); 
-	        		return;
-	        	}
-				mcfish.post("person/buyCoin",data,function(res){
-					layer.msg(res.msg, {icon: 1}); 
-	//				$("#addOrder").modal();
-				});
 			},
 			allsell(){
 				
@@ -243,40 +291,7 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
 		
 				
 			}
-			,updateFrom(){
-				$("#updateFrom").modal();
-			}
-			
-			,sureUpdateFrom(){
-	
-				$("#user_password").val("");
-				openSurePassword(function(){
-					var data = {};
-					data.password = $("#user_password").val();
-					if($("#user_password").val() == "")
-					{
-						layer.msg("请输入密码", {icon: 2}); 
-						return;
-					}
-					
-					mcfish.post("person/surePassword",data,function(res){
-						
-						delete data.password;
-						data.coin = app.$data.coin;
-						data.value = $("#coinFrom").val();
-						data.phone = phone;
-						
-						mcfish.post("system/setFrom",data,function(res){
-							getCoinMsg(app.$data.coin);
-							getCoinLog(app.$data.coin);
-						});
-						
-					});
-				})
-				
-				
-				
-			}
+
 		},
 		watch:{
 		},
@@ -325,13 +340,14 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
 		newDate = dateFilter(year) + "年" + dateFilter(month) + "月" + dateFilter(date) + "日 " + " " + dateFilter(hour) + ":" + dateFilter(minute) + ":" + dateFilter(second);
 		app.$data.nowTime = newDate+" "+week;
 	//	document.getElementById("nowTime").innerHTML = userName + "，" + timeValue + "好！ 欢迎使用运营中心管理系统，当前时间为： " + newDate + "　" + week;
-		setTimeout("getLangDate()", 1000);
+//		setTimeout(asd(), 1000);
+		setTimeout(function(){
+			getLangDate();
+		}, 1000);
 	}
-
 
 	function getComment(){
 		mcfish.get("main/getLast",{coin : app.$data.coin},function(res){
-//		mcfish.API.asyncRequest("main/getLast","GET",{coin : app.$data.coin}).then(function(res){
 			if(res.data != null && res.data != ''){
 	    		app.$data.last = res.data;
 	    		if(app.$data.last <= app.$data.buy_value){
@@ -345,14 +361,13 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
 		    }
 		});
 		
-	//	setTimeout("getComment()", 10000);
+		setTimeout(function(){
+			getComment();
+		}, 10000);
+		
+//		setTimeout("getComment()", 10000);
 	}
-
-//打开开仓窗口
-function showAddOrderPage(){
-	$("#addOrder").modal();
-}
-
+	
 function getCoinMsg(coin){
 	var data = {};
 	data.coin = coin;
@@ -371,7 +386,7 @@ function getCoinMsg(coin){
 			app.$data.next_buy_usdt = res.data.next_buy_usdt;
 			app.$data.usdt_from = res.data.from;
 			app.$data.usdt_from_text = res.data.from==0?"币币账户":"资金账户";
-			
+			app.$coin_avai = res.data.coin_avai;
 			
 			if(app.$data.position != 0){
 				$("#addOrder").attr("disabled",true);
@@ -386,7 +401,6 @@ function getCoinMsg(coin){
 function getCoinLog(coin){
 	$('#log li').remove();
 	mcfish.get("system/getCoinLog",{coin : coin,phone:phone},function(res){
-//	mcfish.API.asyncRequest("system/getCoinLog","GET",{coin : coin,phone:phone}).then(function(res){
 		if(res.data != null && res.data != ''){
     		if(res.data != null && res.data != ''){
     			var tempDate = '';
@@ -433,8 +447,6 @@ function getCoinLog(coin){
 
 function getStop(){
 	mcfish.get("system/getStop",{coin:app.$data.coin},function(res){
-//	mcfish.API.asyncRequest("system/getStop","GET",{coin:app.$data.coin}).then(function(res){
-		
 		if(res.data == null){
 			app.$data.stopValue = "启动";
 			app.$data.moveYX = "启动";

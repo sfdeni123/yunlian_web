@@ -65,6 +65,9 @@
 			text-align: center;
 		}
 		
+		.form-group{
+			margin-bottom: 10px;
+		}
 		
 	</style>
 
@@ -79,25 +82,19 @@
 				</header>
 
 				<div class="col-lg-12">
-					<div class="card">
-						<div class="card-body">
-							<form class="form-horizontal">
-								<div class="form-group row">
-									<label class="col-sm-3 form-control-label">选择币种</label>
-									<div class="col-sm-9">
-										<select  id="selectCoin" class="form-control mb-3" @change="selectChange">
-											<option value="BTC">BTC</option>
-											<option value="ETH">ETH</option>
-											<option value="LTC">LTC</option>
-											<option value="BCH">BCH</option>
-											<option value="BSV">BSV</option>
-											<option value="ETC">ETC</option>
-											<option value="XRP">XRP</option>
-											<option value="EOS">EOS</option>
-										</select>
-									</div>
-								</div>
-							</form>
+					<div class="form-group row">
+						<label class="col-sm-3 form-control-label" style="padding-top: 10px;">选择币种</label>
+						<div class="col-sm-9">
+							<select  id="selectCoin" class="form-control mb-3" @change="selectChange">
+								<option value="BTC">BTC</option>
+								<option value="ETH">ETH</option>
+								<option value="LTC">LTC</option>
+								<option value="BCH">BCH</option>
+								<option value="BSV">BSV</option>
+								<option value="ETC">ETC</option>
+								<option value="XRP">XRP</option>
+								<option value="EOS">EOS</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -106,19 +103,11 @@
 					<div class="card">
 						<div class="myCardBody">
 							<div class="form-group row">
-								<label class="form-control-label myLable">当前账户:</label>
-								<label class="form-control-label myLable">{{ usdt_from_text }}</label>
-							</div>
-						</div>
-						
-						
-						<div class="myCardBody">
-							<div class="form-group row">
 								<label class="form-control-label myLable">当前{{ coin }}价:</label>
 								<label class="form-control-label myLable">$ {{ last }}</label>
 							</div>
 						</div>
-
+						
 						<div class="myCardBody">
 							<div class="form-group row">
 								<label class="form-control-label myLable">USDT余额:</label>
@@ -181,9 +170,7 @@
 								<label class="form-control-label myLable">下次购买价:</label>
 								<label class="form-control-label myLable">{{ buy_value }}</label>
 							</div>
-							
 						</div>
-						
 						
 						<div class="myCardBody">
 								<label class="form-control-label myLable">买币:</label>
@@ -194,6 +181,7 @@
 						<div class="myCardBody">
 								<label class="form-control-label myLable">开仓:</label>
 								<button type="button" class="btn btn-primary btn-sm" @click="addorder()" id="addOrder">开仓</button>
+								<span>币币:{{ coin_avai }}</span>
 						</div>
 						
 						
@@ -212,7 +200,7 @@
 						</div>
 						
 						<div class="myCardBody">
-								<label class="form-control-label myLable">设置下次购买USDT:</label>
+								<label class="form-control-label myLable">下次购买额:</label>
 								<button type="button" class="btn btn-primary btn-sm" @click="updateUsdtNum()">设置</button>
 						</div>
 					</div>
@@ -277,33 +265,6 @@
 			</div>
 			
 			
-			<div class="modal fade" id="updateFrom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document" style="margin-top: 30%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<!--<h4 class="modal-title" id="myModalLabel">修改购买所需USDT</h4>-->
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label class="form-control-label">选择账户</label>
-								<select id="coinFrom" class="form-control" >
-									<option value="0">币币账户</option>
-									<option value="1">资金账户</option>
-								</select>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
-							<button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"  @click="sureUpdateFrom">
-								<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			
 			
 			<div class="modal fade" id="surePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document" style="margin-top: 30%;">
@@ -330,40 +291,9 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			<!-- 设置弹窗 -->
-			<div class="modal fade" id="addOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document" style="margin-top: 30%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel">新增</h4>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label for="txt_departmentname">币价($)</label>
-								<input type="text" name="addOrderValue" class="form-control" id="addOrderValue" placeholder="请输入价格">
-							</div>
-							<div class="form-group">
-								<label for="txt_departmentlevel">USDT数量</label>
-								<input type="text" name="addOrderUsdtCount" class="form-control" id="addOrderUsdtCount" placeholder="请输入usdt数量">
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
-							<button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" @click="buyCoin">
-								<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span>保存</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		
 		
 		</div>
 
-		
-		
 		
 
 			
@@ -398,8 +328,9 @@
 							卖出
 						</a>`;
 				}
+				
 				if(d.isFirst == 1){
-					str = "开仓单无法卖出";
+					str = ""
 				}
 						
 				return str;
