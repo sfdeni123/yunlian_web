@@ -43,22 +43,50 @@
                 <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
             </script>
+
+            <div id="add-main" style="display: none;">
+                <div class="layui-form-item center">
+                    <label class="layui-form-label" style="width: 100px">id</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="id" required v-model="newInvestProject.id" style="width: 240px"
+                            lay-verify="required" placeholder="请输入id" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 100px">项目名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="projectname" v-model="newInvestProject.projectname" required
+                            style="width: 240px" lay-verify="required" placeholder="请输入项目名称" autocomplete="off"
+                            class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="save"
+                            @click="addNewInvestProject()">提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary" id="closeBtn">重置</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
     </div>
 
     <script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
     <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
     <script>
-        var tabledata = {
-            "code": 0,
-            "msg": "",
-            "count": 2,
-            "data": []
+        var tabledata = [];
+        var newInvestProject = {
+            id: 0,
+            projectname: "挖矿项目"
         };
+        var edit = 0;
         var investprojectapp = new Vue({
             el: "#investprojectapp",
             data: {
-                investprojects: []
+                newInvestProject
             },
             created() {
                 fetch('http://localhost:3000/investprojects')
@@ -67,11 +95,42 @@
                     }).catch(err => {
                         console.error('get json error', err);
                     }).then(data => {
-                        this.investprojects = data;
-                        tabledata.data = data;
-                        console.log('tabledata', JSON.stringify( tabledata));
+                        tabledata = data;
+                        console.log('tabledata', JSON.stringify(tabledata));
                     })
-            }
+            },
+            methods: {
+                addNewInvestProject: function () {
+                    //如果id是0就是新增，如果id不是0就是编辑
+                    if (edit == 0) {
+                        //把newInvestProject提交到jsonserver
+                        fetch('http://localhost:3000/investprojects', {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newInvestProject)
+                        }).then(function (res) {
+                            investprojects.push(newInvestProject);
+                            newInvestProject.id = 0;
+                            newInvestProject.projectname = "挖矿项目";
+                            console.log('response', res)
+                        })
+                    } else {
+                        fetch('http://localhost:3000/investprojects/' + newInvestProject.id, {
+                            method: "PUT",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newInvestProject)
+                        }).then(function (res) {
+                            newInvestProject.id = 0;
+                            newInvestProject.projectname = "挖矿项目";
+                            console.log('response', res)
+                        })
+                    }
+                }
+            },
         })
 
         layui.use(['form', 'table'], function () {
@@ -81,7 +140,7 @@
 
             table.render({
                 elem: '#currentTableId',
-                url:'../../api/table.json',  //假数据
+                url: '../../api/tablejson.json', //假数据
                 cols: [
                     [{
                             type: "checkbox",
@@ -99,18 +158,24 @@
                             width: 180,
                             title: '项目名称'
                         },
-                        {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+                        {
+                            title: '操作',
+                            minWidth: 50,
+                            templet: '#currentTableBar',
+                            fixed: "right",
+                            align: "center"
+                        }
                     ]
                 ],
                 limits: [10, 15, 20, 25, 50, 100],
                 limit: 10,
                 page: true,
-                parseData:function(res){
+                parseData: function (res) {
                     return {
-                        "code":0,
-                        "msg":"",
-                        "count":10,
-                        data:tabledata.data
+                        "code": 0,
+                        "msg": "",
+                        "count": 10,
+                        data: tabledata
                     }
                 }
             });
@@ -137,7 +202,21 @@
 
             // 监听添加操作
             $(".data-add-btn").on("click", function () {
-                layer.msg('添加数据');
+                edit = 0;
+                //弹框，弹出添加数据的div
+                layer.open({
+                    type: 1,
+                    title: "新增项目",
+                    closeBtn: false,
+                    shift: 2,
+                    area: ['400px', '400px'],
+                    shadeClose: true,
+                    content: $("#add-main"),
+                    success: function (layero, index) {},
+                    yes: function () {
+
+                    }
+                });
             });
 
             // 监听删除操作
@@ -145,6 +224,12 @@
                 var checkStatus = table.checkStatus('currentTableId'),
                     data = checkStatus.data;
                 layer.alert(JSON.stringify(data));
+                data.forEach(dataitem => {
+                    var delurl = "http://localhost:3000/investprojects/" + dataitem.id;
+                    fetch(delurl, {
+                        method: "delete"
+                    }).then(res => res.json);
+                });
             });
 
             //监听表格复选框选择
@@ -155,10 +240,35 @@
             table.on('tool(currentTableFilter)', function (obj) {
                 var data = obj.data;
                 if (obj.event === 'edit') {
-                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                    //layer.alert('编辑行：<br>' + JSON.stringify(data));
+                    newInvestProject.id = data.id;
+                    newInvestProject.projectname = data.projectname;
+                    edit = 1;
+                    //弹框，弹出添加数据的div
+                    layer.open({
+                        type: 1,
+                        title: "编辑项目",
+                        closeBtn: false,
+                        shift: 2,
+                        area: ['400px', '400px'],
+                        shadeClose: true,
+                        content: $("#add-main"),
+                        success: function (layero, index) {},
+                        yes: function () {
+
+                        }
+                    });
                 } else if (obj.event === 'delete') {
                     layer.confirm('真的删除行么', function (index) {
                         obj.del();
+                        console.log('tag', obj.data.id)
+                        var delurl = "http://localhost:3000/investprojects/" + obj.data.id;
+                        fetch(delurl, {
+                            method: "delete"
+                        }).then(res => {
+                            console.log('del response', res.json)
+                            return res.json
+                        });
                         layer.close(index);
                     });
                 }

@@ -1,121 +1,132 @@
 {
-    "users": [{
-        "id": 1,
-        "username": "18180055588",
-        "name": "李金远"
-    }, {
-        "id": 2,
-        "username": "15622158666",
-        "name": "张三"
-    }],
-    
-    "investprojects": [{
-            "id": 1,
-            "projectname": "挖矿一期"
-        },
-        {
-            "id": 2,
-            "projectname": "挖矿二期"
-        }
-    ],
-    "investplan": {
-        "id": 1,
-        "investprojectid": 1,
-        "proposal": "项目计划书，富文本，一篇完整的网页文章。",
-        "creator":"李金远",
-        "createtime":"2019-06-02"
+  "users": [
+    {
+      "id": 1,
+      "username": "18180055588",
+      "name": "李金远"
     },
-    "budgets": [{
-            "id": 1,
-            "investprojectid": 1,   
-            "budgetItem": "购买矿机",
-            "budgetPrice": 500,
-            "budgetCount": 360,
-            "budgetPriceSum": 150000,
-            "plantips": "计划先用低端机器过度", 
-            "exceptResult": "期望两个月快速回本",   
-            "budgetDate": "2019-06-01", 
-            "planstartdate": "2019-06-02",  
-            "planenddate": "2019-06-10"     
-        },
-        {
-            "id": 1,
-            "investprojectid": 1,   
-            "budgetItem": "购买电源",
-            "budgetPrice": 500,
-            "budgetCount": 360,
-            "budgetPriceSum": 150000,
-            "plantips": "计划使用低端电源先上",
-            "exceptResult": "期望用完卖掉价格持平",
-            "budgetDate": "2019-06-01",
-            "planstartdate": "2019-06-02",
-            "planenddate": "2019-06-10"
-        }
-    ],
-    
-    "billdetails": [{
-        "id": 1,
-        "investprojectid": 1,   
-        "budgetItem": "购买矿机",   
-        "billtype": "支出", 
-        "price": 500,   
-        "count": 360,   
-        "pricesum": 150000, 
-        "paymethod": "招商银行",    
-        "paytime": "2019-06-02",    
-        "payer": "李金远",      
-        "memo": "向黄牛xx采购，约定保算力.",    
-        "img": "xxx.jpg",       
-        "createtime": "2019-06-02",     
-        "summary": "于xx时候完成，到货之后坏了100个",   
-        "summarytime": "2019-07-03"     
-    }],
-    
-    "timelines": [{
-        "id": 1,
-        "investprojectid": 1,   
-        "datetime": "2019-06-01",   
-        "actiontype": "上机",       
-        "actionlog": "去往洪雅矿场上机"     
-    }],
-    
-    "coinbills": [{
-        "id": 1,
-        "investprojectid": 1,   
-        "cointype": "BTC",  
-        "minercount": 360,  
-        "badminercount": 10,    
-        "minerpower": "2P", 
-        "coinpert": "0.000019", 
-        "minedate": "2019-06-01",   
-        "minecoin": 0.05,   
-        "coinprice": 70000, 
-        "mineprice": 3500   
-    }],
-    "actionchecklists":[
-        {
-            "id":1,
-            "principle":"哪一条理论",
-            "explain":"理论解释",
-            "example":"具体案例",
-            "creator":"李金远",
-            "createime":"2019-06-01"
-        }
-    ],
-    "minerprice":[
-        {
-            "id":1,
-            "minertype":"蚂蚁S9",
-            "minerpower":"13.5",
-            "coinpert":"0.000019",
-            "minerprice":1800,
-            "minecoinperdate":0.0002,
-            "coinprice":70000,
-            "minepriceperdate":20,
-            "dianjia":0.26,
-            "gonghao":"1400w",
-            "dianfei":9,
-            "shouyi":11
-        }
-    ]
+    {
+      "id": 2,
+      "username": "15622158666",
+      "name": "张三"
+    }
+  ],
+  "investprojects": [
+    {
+      "id": 1,
+      "projectname": "挖矿一期"
+    },
+    {
+      "id": 2,
+      "projectname": "挖矿二期"
+    },
+    {
+      "id": "3",
+      "projectname": "挖矿项目三"
+    }
+  ],
+  "investplan": {
+    "id": 1,
+    "investprojectid": 1,
+    "proposal": "项目计划书，富文本，一篇完整的网页文章。",
+    "creator": "李金远",
+    "createtime": "2019-06-02"
+  },
+  "budgets": [
+    {
+      "id": 1,
+      "investprojectid": 1,
+      "budgetItem": "购买矿机",
+      "budgetPrice": 500,
+      "budgetCount": 360,
+      "budgetPriceSum": 150000,
+      "plantips": "计划先用低端机器过度",
+      "exceptResult": "期望两个月快速回本",
+      "budgetDate": "2019-06-01",
+      "planstartdate": "2019-06-02",
+      "planenddate": "2019-06-10"
+    },
+    {
+      "id": 1,
+      "investprojectid": 1,
+      "budgetItem": "购买电源",
+      "budgetPrice": 500,
+      "budgetCount": 360,
+      "budgetPriceSum": 150000,
+      "plantips": "计划使用低端电源先上",
+      "exceptResult": "期望用完卖掉价格持平",
+      "budgetDate": "2019-06-01",
+      "planstartdate": "2019-06-02",
+      "planenddate": "2019-06-10"
+    }
+  ],
+  "billdetails": [
+    {
+      "id": 1,
+      "investprojectid": 1,
+      "budgetItem": "购买矿机",
+      "billtype": "支出",
+      "price": 500,
+      "count": 360,
+      "pricesum": 150000,
+      "paymethod": "招商银行",
+      "paytime": "2019-06-02",
+      "payer": "李金远",
+      "memo": "向黄牛xx采购，约定保算力.",
+      "img": "xxx.jpg",
+      "createtime": "2019-06-02",
+      "summary": "于xx时候完成，到货之后坏了100个",
+      "summarytime": "2019-07-03"
+    }
+  ],
+  "timelines": [
+    {
+      "id": 1,
+      "investprojectid": 1,
+      "datetime": "2019-06-01",
+      "actiontype": "上机",
+      "actionlog": "去往洪雅矿场上机"
+    }
+  ],
+  "coinbills": [
+    {
+      "id": 1,
+      "investprojectid": 1,
+      "cointype": "BTC",
+      "minercount": 360,
+      "badminercount": 10,
+      "minerpower": "2P",
+      "coinpert": "0.000019",
+      "minedate": "2019-06-01",
+      "minecoin": 0.05,
+      "coinprice": 70000,
+      "mineprice": 3500
+    }
+  ],
+  "actionchecklists": [
+    {
+      "id": 1,
+      "principle": "哪一条理论",
+      "explain": "理论解释",
+      "example": "具体案例",
+      "creator": "李金远",
+      "createime": "2019-06-01"
+    }
+  ],
+  "minerprice": [
+    {
+      "id": 1,
+      "minertype": "蚂蚁S9",
+      "minerpower": "13.5",
+      "coinpert": "0.000019",
+      "minerprice": 1800,
+      "minecoinperdate": 0.0002,
+      "coinprice": 70000,
+      "minepriceperdate": 20,
+      "dianjia": 0.26,
+      "gonghao": "1400w",
+      "dianfei": 9,
+      "shouyi": 11
+    }
+  ]
 }
