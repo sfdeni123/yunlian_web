@@ -86,7 +86,7 @@
 	        	delete data.field.passphrase;
 	        }
 	        if(data.field.riseSell < 6){
-	        	layer.msg("涨卖点不能低于6",{icon,2});
+	        	layer.msg("涨卖点不能低于6",{icon:2});
 	        	return;
 	        }
         	mcfish.post("user/updateUser",data.field,function(res){

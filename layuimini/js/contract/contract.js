@@ -150,6 +150,40 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
 					});
 				});
 			},
+			sellBBcoin(){
+				
+				if(app.$data.position == 0){
+					layer.msg("当前无仓位", {icon: 2}); 
+					return;
+				}
+				$("#user_password").val("");
+				openSurePassword(function(){
+					var data = {};
+					data.password = $("#user_password").val();
+					if($("#user_password").val() == "")
+					{
+						layer.msg("请输入密码", {icon: 2}); 
+						return;
+					}
+					
+					mcfish.post("person/surePassword",data,function(res){
+						if(res.code != 0){
+							layer.msg(res.msg, {icon: 2}); 
+							return;
+						}else{
+							
+							delete data.password;
+							data.coin = app.$data.coin;
+							
+							mcfish.post("person/sellYXcoin",data,function(res){
+								getCoinLog(app.$data.coin);
+								getCoinMsg(app.$data.coin);
+								getStop();
+							});
+						}
+					});
+				});
+			},
 			addorder(){
 				$("#user_password").val("");
 				openSurePassword(function(){
