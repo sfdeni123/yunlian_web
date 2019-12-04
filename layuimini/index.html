@@ -95,26 +95,34 @@
 <script src="lib/layui-v2.5.4/layui.js?v=1.0.4" charset="utf-8"></script>
 <script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
-    layui.use(['element', 'layer', 'layuimini'], function () {
+    layui.use(['element', 'layer', 'layuimini','mcfish'], function () {
         var $ = layui.jquery,
             element = layui.element,
+            mcfish = layui.mcfish,
             layer = layui.layer;
 
-        layuimini.init('api/init.json');
+		mcfish.get("system/getInit",{},function(res){
+//			console.log(res);
+//			console.log($.parseJSON(res.data));
+//			layuimini.init('api/init.json');
+			layuimini.init($.parseJSON(res.data));
+			const user = layui.data("yunlian_user").user;
+			if(user == null || user == undefined){
+				window.location.href = "login.html";
+			}
+			$("#userName").html(layui.data("yunlian_user").user.name);
+			
+	        $('.login-out').on("click", function () {
+	        	layui.data('yunlian_user', {key: 'user',remove: true});
+	            layer.msg('退出登录成功', function () {
+	                window.location.href = 'login.html';
+	            });
+	        });
+		});
+        
 
 		
-		const user = layui.data("yunlian_user").user;
-		if(user == null || user == undefined){
-			window.location.href = "login.html";
-		}
-		$("#userName").html(layui.data("yunlian_user").user.name);
 		
-        $('.login-out').on("click", function () {
-        	layui.data('yunlian_user', {key: 'user',remove: true});
-            layer.msg('退出登录成功', function () {
-                window.location.href = 'login.html';
-            });
-        });
     });
 </script>
 </body>

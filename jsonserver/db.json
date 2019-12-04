@@ -32,19 +32,21 @@
     "creator": "李金远",
     "createtime": "2019-06-02"
   },
+  
+  
   "budgets": [
     {
       "id": 1,
-      "investprojectid": 1,
-      "budgetItem": "购买矿机",
-      "budgetPrice": 500,
-      "budgetCount": 360,
-      "budgetPriceSum": 150000,
-      "plantips": "计划先用低端机器过度",
-      "exceptResult": "期望两个月快速回本",
-      "budgetDate": "2019-06-01",
-      "planstartdate": "2019-06-02",
-      "planenddate": "2019-06-10"
+      "investprojectid": 1,//项目ID
+      "budgetItem": "购买矿机",//子项
+      "budgetPrice": 500,//单价
+      "budgetCount": 360,//数量
+      "budgetPriceSum": 150000,//合计
+      "plantips": "计划先用低端机器过度",//计划
+      "exceptResult": "期望两个月快速回本",//qiwang
+      "budgetDate": "2019-06-01",//计划日期
+      "planstartdate": "2019-06-02",//开始日期
+      "planenddate": "2019-06-10"//结束日期
     },
     {
       "id": 2,
@@ -60,6 +62,7 @@
       "planenddate": "2019-06-10"
     }
   ],
+  
   "billdetails": [
     {
       "id": 1,

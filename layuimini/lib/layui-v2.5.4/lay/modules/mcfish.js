@@ -7,7 +7,7 @@ layui.define('jquery', function(exports) {
 	var $ = layui.$
 	,layer = layui.layer
 	,jquery = layui.jquery
-	,pName = "HDCM_OPERATION"
+	,pName = "YUNLIAN_USER"
 	//外部接口
 	,mcfish = {
 		//回到登录页
@@ -151,6 +151,7 @@ layui.define('jquery', function(exports) {
                             icon: 4,
                             anim: 5
                         }, function() {
+                        	layui.data('yunlian_user', {key: 'user',remove: true});
                             mcfish.redirectLogin();
                         });
                     } else {
@@ -203,7 +204,9 @@ layui.define('jquery', function(exports) {
 							icon: 4,
 							anim: 5
 						}, function () {
+							layui.data('yunlian_user', {key: 'user',remove: true});
 							mcfish.redirectLogin();
+							
 						});
 					} else {
 						layer.msg(result.msg);
@@ -227,6 +230,20 @@ layui.define('jquery', function(exports) {
 					});
 				}
 			})
+		}
+		,IsPC:function() {
+			   var userAgentInfo = navigator.userAgent;
+			   var Agents = ["Android", "iPhone",
+			      "SymbianOS", "Windows Phone",
+			      "iPad", "iPod"];
+			   var flag = true;
+			   for (var v = 0; v < Agents.length; v++) {
+			      if (userAgentInfo.indexOf(Agents[v]) > 0) {
+			         flag = false;
+			         break;
+			      }
+			   }
+			   return flag;
 		}
 	};
 	exports('mcfish', mcfish);

@@ -1,4 +1,4 @@
-/** layui-v2.5.4 MIT License By https://www.layui.com */ ;
+/** layui-v2.5.5 MIT License By https://www.layui.com */ ;
 ! function(e) {
 	"use strict";
 	var t = document,
@@ -9,7 +9,7 @@
 			event: {}
 		},
 		n = function() {
-			this.v = "2.5.4"
+			this.v = "2.5.5"
 		},
 		r = function() {
 			var e = t.currentScript ? t.currentScript.src : function() {
@@ -49,7 +49,7 @@
 			jquery: "modules/jquery",
 			mobile: "modules/mobile",
 			"layui.all": "../layui.all",
-			mcfish: 'modules/mcfish'
+			mcfish:"modules/mcfish"
 		};
 	n.prototype.cache = o, n.prototype.define = function(e, t) {
 		var n = this,

@@ -45,7 +45,9 @@ layui.define(["element", "jquery"], function (exports) {
             var loading = layer.load(0, {shade: false, time: 2 * 1000});
             layuimini.initBgColor();
             layuimini.initDevice();
-            $.getJSON(url, function (data, status) {
+//          $.getJSON(url, function (data, status) {
+            data = url;
+            	console.log(data);
                 if (data == null) {
                     layuimini.msg_error('暂无菜单信息');
                 } else {
@@ -55,9 +57,9 @@ layui.define(["element", "jquery"], function (exports) {
                     layuimini.initMenu(data.menuInfo);
                     layuimini.initTab();
                 }
-            }).fail(function () {
-                layuimini.msg_error('菜单接口有误');
-            });
+//          }).fail(function () {
+//              layuimini.msg_error('菜单接口有误');
+//          });
             layer.close(loading);
         };
 

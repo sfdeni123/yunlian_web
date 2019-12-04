@@ -440,6 +440,7 @@ function getCoinLog(coin){
     			var tempDate = '';
     			var str = '';
     			var arr = [];
+    			console.log(res.data.length)
 	     		for (i = 0; i < res.data.length; i++) {
 	     			if(res.data[i].createTime == tempDate){
 	     				str += `<p>
@@ -450,6 +451,7 @@ function getCoinLog(coin){
 								</div>
 							</li>`;
 	     					$("#log").append(str);
+	     					console.log(str);
 						}
 	     			}else{
 	     				if(i != 0){
@@ -457,7 +459,7 @@ function getCoinLog(coin){
 								</div>
 							</li>`;
 	     					$("#log").append(str);
-	     					
+	     					console.log(str);
 	     				}
 	     				
 	     				tempDate =  res.data[i].createTime;
@@ -471,6 +473,12 @@ function getCoinLog(coin){
 								</p>
 								`
 								;
+						if(res.data.length == 1){
+							str += `<br />
+								</div>
+							</li>`;
+	     					$("#log").append(str);
+						}
 	     			}
 				}
 	     	}
@@ -524,7 +532,7 @@ function openSurePassword(callback){
     tableIns = table.render({
         elem: '#coinBuyList'
         ,url: mcfish.getReqUri() + '/person/getUserCoinBuyList'
-        ,cellMinWidth: 95
+        ,cellMinWidth: 100
         ,page: true
         ,where:{coin:app.$data.coin}
         ,limit: 10
@@ -541,7 +549,7 @@ function openSurePassword(callback){
            		}
             }
             ,{field: 'value', title: '当前涨幅', width:100, templet: function (d) {
-                    return ((app.$data.last - d.value)/d.value*100).toFixed(2)+"%";
+                    return ((d.last - d.value)/d.value*100).toFixed(2)+"%";
              	 }
             }
             ,{field: 'isSell', title: '卖出', width:70,templet:function(d){

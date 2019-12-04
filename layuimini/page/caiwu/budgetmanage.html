@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>预算管理</title>
 
-    <link rel="stylesheet" href="../../css/layuimini.css" media="all">
     <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
     <link rel="stylesheet" href="../../css/public.css" media="all">
 
@@ -17,7 +16,7 @@
     <div class="layuimini-container">
         <div class="layuimini-main" id="app">
             <!-- 搜索框 -->
-            <fieldset class="layui-elem-field layuimini-search">
+            <!--<fieldset class="layui-elem-field layuimini-search">
                 <legend>搜索</legend>
                 <div style="margin: 10px 10px 10px 10px">
                     <form class="layui-form layui-form-pane" action="">
@@ -34,378 +33,129 @@
                         </div>
                     </form>
                 </div>
-            </fieldset>
+            </fieldset>-->
 
-            <!-- //数据表工具按钮 -->
-            <div class="layui-btn-group">
-                <button class="layui-btn data-add-btn">添加</button>
-                <button class="layui-btn layui-btn-danger data-delete-btn">删除</button>
-            </div>
-
+			<script type="text/html" id="infoBar">
+				 <button class="layui-btn data-add-btn" lay-event="add">添加</button>
+                 <!--<button class="layui-btn layui-btn-danger data-delete-btn">删除</button>-->
+			</script>
+			
             <!-- //数据表 -->
             <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+            
             <!-- //数据表操作列 -->
             <script type="text/html" id="currentTableBar">
                 <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-                <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+                <!--<a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>-->
             </script>
 
             <!-- //新增数据弹出框 -->
             <div id="add-main" style="display: none;">
-                <div class="layui-form-item center">
-                    <label class="layui-form-label" style="width: 100px">id</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="id" required v-model="neworeditdataitem.id" style="width: 240px"
-                            lay-verify="required" placeholder="请输入id" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">项目id</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="investprojectid" v-model="neworeditdataitem.investprojectid" required
-                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">预算子项</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="budgetItem" v-model="neworeditdataitem.budgetItem" required
-                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">单价</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="budgetPrice" v-model="neworeditdataitem.budgetPrice" required
-                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">数量</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="budgetCount" v-model="neworeditdataitem.budgetCount" required
-                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">合计</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="budgetPriceSum" v-model="neworeditdataitem.budgetPriceSum" required
-                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">计划</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="plantips" v-model="neworeditdataitem.plantips" required
-                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">期望值</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="exceptResult" v-model="neworeditdataitem.exceptResult" required
-                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">计划日期</label>
-                    <div class="layui-input-block">
-                        <input type="text" id="budgetDate" name="budgetDate" v-model="neworeditdataitem.budgetDate"
-                            required style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">开始日期</label>
-                    <div class="layui-input-block">
-                        <input type="text" id="planstartdate" name="planstartdate"
-                            v-model="neworeditdataitem.planstartdate" required style="width: 240px"
-                            lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: 100px">结束日期</label>
-                    <div class="layui-input-block">
-                        <input type="text" id="planenddate" name="planenddate" v-model="neworeditdataitem.planenddate"
-                            required style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
-                            class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="save" @click="addNew()">提交</button>
-                        <button type="reset" class="layui-btn layui-btn-primary" id="closeBtn">重置</button>
-                    </div>
-                </div>
+            	<div class="layui-form layuimini-form" lay-filter="formTest">
+            		
+	                <div class="layui-form-item center" style="display: none;" id="itemId">
+	                    <label class="layui-form-label" style="width: 100px">id</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="id" 
+	                             autocomplete="off" class="layui-input" readonly="readonly" disabled="disabled" style="background-color: darkgrey;">
+	                    </div>
+	                </div>
+	                
+	                <!--<div class="layui-form-item">
+	                    <label class="layui-form-label" style="width: 100px">项目id</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="investprojectid"  required
+	                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>-->
+	                
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">用途</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="name" required
+	                            lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">单价</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="budgetPrice" required
+	                             lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">数量</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="budgetCount"  required
+	                            lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>
+	                <!--<div class="layui-form-item">
+	                    <label class="layui-form-label" style="width: 100px">合计</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="budgetPriceSum"  required
+	                            style="width: 240px" lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>-->
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">计划</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="plan"  required
+	                            lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">期望值</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" name="expect"  required
+	                            lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">计划日期</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" id="createTime" name="createTime" 
+	                            required lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">开始日期</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" id="startTime" name="startTime"
+	                            required 
+	                            lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label required" style="width: 100px">结束日期</label>
+	                    <div class="layui-input-block">
+	                        <input type="text" id="endTime" name="endTime" 
+	                            required  lay-verify="required" placeholder="请输入" autocomplete="off"
+	                            class="layui-input">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <div class="layui-input-block">
+	                        <button class="layui-btn" lay-submit lay-filter="save">提交</button>
+	                        <button type="reset" class="layui-btn layui-btn-primary" id="closeBtn" lay-filter="close">取消</button>
+	                    </div>
+	                </div>
+	            </div>
             </div>
         </div>
     </div>
-
+</body>
     <script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
     <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-    <script>
-        //声明全局数据，当前页面数据，和新增数据/编辑数据
-        var tabledatas = [];
-        var neworeditdataitem = {};
-        var edit = 0;
-        var jsonurl = 'http://localhost:3000/budgets';
-
-        //layui
-        layui.use(['form', 'table', 'laydate'], function () {
-            var $ = layui.jquery,
-                form = layui.form,
-                table = layui.table;
-            var laydate = layui.laydate;
-
-            laydate.render({
-                elem: '#budgetDate' //指定元素
-            });
-            laydate.render({
-                elem: '#planstartdate' //指定元素
-            });
-            laydate.render({
-                elem: '#planenddate' //指定元素
-            });
-
-            table.render({
-                elem: '#currentTableId',
-                //url: '../../api/tablejson.json', //假数据
-                data: [],
-                cols: [
-                    [{
-                            type: "checkbox",
-                            width: 50,
-                            fixed: "left"
-                        },
-                        {
-                            field: 'id',
-                            width: 80,
-                            title: 'ID',
-                            sort: true
-                        },
-                        {
-                            field: 'investprojectid',
-                            width: 80,
-                            title: '项目id',
-                            sort: true
-                        },
-                        {
-                            field: 'budgetItem',
-                            width: 180,
-                            title: '子项'
-                        },
-                        {
-                            field: 'budgetPrice',
-                            width: 80,
-                            title: '单价'
-                        },
-                        {
-                            field: 'budgetCount',
-                            width: 80,
-                            title: '数量'
-                        },
-                        {
-                            field: 'budgetPriceSum',
-                            width: 80,
-                            title: '合计'
-                        },
-                        {
-                            field: 'plantips',
-                            width: 180,
-                            title: '计划'
-                        },
-                        {
-                            field: 'exceptResult',
-                            width: 180,
-                            title: '期望值'
-                        },
-                        {
-                            field: 'budgetDate',
-                            width: 180,
-                            title: '计划日期'
-                        },
-                        {
-                            field: 'planstartdate',
-                            width: 180,
-                            title: '开始日期'
-                        },
-                        {
-                            field: 'planenddate',
-                            width: 180,
-                            title: '结束日期'
-                        },
-                        {
-                            title: '操作',
-                            minWidth: 50,
-                            templet: '#currentTableBar',
-                            fixed: "right",
-                            align: "center"
-                        }
-                    ]
-                ],
-                limits: [10, 15, 20, 25, 50, 100],
-                limit: 10,
-                page: true
-            });
-
-            //
-            var app = new Vue({
-                el: '#app',
-                data: {
-                    neworeditdataitem
-                },
-                created() {
-                    fetch(jsonurl)
-                        .then(res => {
-                            return res.json();
-                        }).then(data => {
-                            tabledatas = data;
-
-                            table.reload('currentTableId', {
-                                elem: '#currentTableId',
-                                data: tabledatas
-                            });
-                        }).catch(err => {
-                            console.error('get table data error', err)
-                        });
-                },
-                methods: {
-                    addoredit: function () {
-                        if (edit == 0) {
-                            //新增
-                            fetch(jsonurl, {
-                                method: "POST",
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(neworeditdataitem)
-                            }).then(function (res) {
-                                tabledatas.push(neworeditdataitem);
-                                console.log('response', res)
-                            })
-                        } else {
-                            //编辑
-                            fetch(jsonurl + '/' + neworeditdataitem.id, {
-                                method: "PUT",
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(neworeditdataitem)
-                            }).then(function (res) {
-                                neworeditdataitem.id = 0;
-                                console.log('response', res)
-                            })
-                        }
-                    }
-                },
-            })
-
-            // 监听搜索操作
-            form.on('submit(data-search-btn)', function (data) {
-                var result = JSON.stringify(data.field);
-                layer.alert(result, {
-                    title: '最终的搜索信息'
-                });
-
-                //执行搜索重载
-                table.reload('currentTableId', {
-                    page: {
-                        curr: 1
-                    },
-                    where: {
-                        searchParams: result
-                    }
-                }, 'data');
-
-                return false;
-            });
-
-            // 监听添加操作
-            $(".data-add-btn").on("click", function () {
-                edit = 0;
-                //弹框，弹出添加数据的div
-                layer.open({
-                    type: 1,
-                    title: "新增项目",
-                    closeBtn: false,
-                    shift: 2,
-                    area: ['400px', '600px'],
-                    shadeClose: true,
-                    content: $("#add-main"),
-                    success: function (layero, index) {},
-                    yes: function () {
-
-                    }
-                });
-            });
-
-            // 监听删除操作
-            $(".data-delete-btn").on("click", function () {
-                var checkStatus = table.checkStatus('currentTableId'),
-                    data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-                data.forEach(dataitem => {
-                    var delurl = jsonurl + "/" + dataitem.id;
-                    fetch(delurl, {
-                        method: "delete"
-                    }).then(res => res.json);
-                });
-            });
-
-            //监听表格复选框选择
-            table.on('checkbox(currentTableFilter)', function (obj) {
-                console.log(obj)
-            });
-
-            table.on('tool(currentTableFilter)', function (obj) {
-                var data = obj.data;
-                if (obj.event === 'edit') {
-                    //layer.alert('编辑行：<br>' + JSON.stringify(data));
-                    neworeditdataitem = data;
-                    edit = 1;
-                    //弹框，弹出添加数据的div
-                    layer.open({
-                        type: 1,
-                        title: "编辑项目",
-                        closeBtn: false,
-                        shift: 2,
-                        area: ['400px', '600px'],
-                        shadeClose: true,
-                        content: $("#add-main"),
-                        success: function (layero, index) {},
-                        yes: function () {
-
-                        }
-                    });
-                } else if (obj.event === 'delete') {
-                    layer.confirm('真的删除行么', function (index) {
-                        obj.del();
-                        console.log('tag', obj.data.id)
-                        var delurl = jsonurl + "/" + obj.data.id;
-                        fetch(delurl, {
-                            method: "delete"
-                        }).then(res => {
-                            console.log('del response', res.json)
-                            return res.json
-                        });
-                        layer.close(index);
-                    });
-                }
-            });
-
-        });
-
-        //new vue
-    </script>
-
-</body>
+    <script src="../../js/caiwu/budgetmanage.js?v=1.0.1"></script>
+   
 
 </html>
