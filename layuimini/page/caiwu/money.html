@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	    <meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	    <title>管理</title>
+	
+	    <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
+	    <link rel="stylesheet" href="../../css/public.css" media="all">
+		
+		<style type="text/css">
+			.payInfo-center{
+				text-align: center;
+				margin-top: 40px;
+			}
+			.payInfo-center .card div{
+				margin-top: 30px;
+			}
+		</style>
+	</head>
+
+	<body class="childrenBody">
+		<form class="layui-form" action="" lay-filter="moneyFilter">
+		  	<div class="layui-form-item">
+		   		<div class="layui-input-inline">
+					<select class="layui-select" name="typeList" lay-filter="typeInfo">
+						<option value="">请选择</option>
+					</select>
+				</div>
+				<a class="layui-btn layui-btn-sm" id="addInfo" lay-filter="addInfo" lay-submit>添加记录</a>
+		  	</div>
+		</form>
+		
+		<!--<script type="text/html" id="infoBar">
+				<div class="layui-input-inline">
+					<select class="layui-select" name="typeList" lay-filter="typeInfo" lay-event="typeEvent">
+						<option value="">请选择</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-sm magl10" lay-filter="" lay-submit lay-event="add">添加记录</button>
+		</script>-->
+		
+		
+		<table id="moneyList" lay-filter="moneyList"></table>
+		
+		<script type="text/html" id="palyToolbar">
+			{{#
+				var str = "";
+				if(d.image != null){
+					str = `<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="paly">
+							<i class="layui-icon layui-icon-picture"></i>
+						</a>`;
+				}
+				return str;
+			}}
+		</script>
+		
+		<script type="text/html" id="barDemo">
+			{{#
+				if(d.status === 0){
+					var str = 
+							` <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+								<i class="layui-icon layui-icon-edit"></i>编辑
+							</a>
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">
+								<i class="layui-icon layui-icon-delete"></i>删除
+							</a>`;
+					return str;
+				}else if(d.status === 1){
+						var dom = `<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+									<i class="layui-icon layui-icon-edit"></i>编辑
+								</a>`;
+						return dom;
+				}
+			}}
+		</script>
+ 
+		<script type="text/html" id="categoryTpl">
+			{{#
+				if(d.category == 0){
+					return '<span class="layui-badge layui-bg-orange">支出</span>';
+				}else if(d.category == 1){
+					return '<span class="layui-badge layui-bg-green">收入</span>';
+				}
+				else if(d.category == 2){
+					return '<span class="layui-badge layui-bg-red">债务</span>';
+				}
+			}}
+		</script>
+		
+		<script type="text/html" id="statusTpl">
+			{{#
+				if (d.status == 0) {
+					return '<span class="layui-badge layui-bg-orange">待审核</span>';
+				} else if(d.status === 1) {
+					return '<span class="layui-badge layui-bg-green">正常</span>';
+				} else if(d.status === 2) {
+					return '<span class="layui-badge layui-bg-red">已拒绝</span>';
+				}
+			}}
+		</script>
+		
+	</body>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	<script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+	<script src="../../js/caiwu/money.js"></script>
+</html>

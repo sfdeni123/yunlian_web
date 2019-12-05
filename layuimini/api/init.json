@@ -82,7 +82,7 @@
             },
             {
               "title": "流水记录",
-              "href": "page/icon.html",
+              "href": "page/caiwu/money.html",
               "icon": "fa fa-dot-circle-o",
               "target": "_self"
             }

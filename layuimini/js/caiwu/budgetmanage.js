@@ -157,7 +157,7 @@ layui.use(['form', 'table', 'laydate','mcfish','util'], function () {
     	
     });
     
-	table.on('toolbar(currentTableFilter)', function(obj){
+table.on('toolbar(currentTableFilter)', function(obj){
 	 var checkStatus = table.checkStatus(obj.config.id);
 	 switch(obj.event){
 	    case 'add':
