@@ -103,16 +103,6 @@
 		 		if(data.field.id != null && data.field.id != undefined && data.field.id != "") {
 		 				requestUrl = "project/updateProject";
 		 		}
-//		 		mcfish.post(requestUrl, data.field, function() {
-//		 				layer.close(index);
-//		 				tableIns.reload();
-//		 				if(requestUrl == "project/addProject"){
-//		 						mcfish.get("system/getInit",{},function(res){
-//									layuimini.init($.parseJSON(res.data));
-//								});
-//      
-//		 				}
-//		 		});
 	 	});
 	
 	 	//关闭弹窗
@@ -120,17 +110,9 @@
 	 			layer.close(index);
 	 	});
 	
+	
 	 	//  // 监听删除操作
 	 	//  $(".data-delete-btn").on("click", function () {
-	 	//      var checkStatus = table.checkStatus('currentTableId'),
-	 	//          data = checkStatus.data;
-	 	//      layer.alert(JSON.stringify(data));
-	 	//      data.forEach(dataitem => {
-	 	//          var delurl = jsonurl + "/" + dataitem.id;
-	 	//          fetch(delurl, {
-	 	//              method: "delete"
-	 	//          }).then(res => res.json);
-	 	//      });
 	 	//  });
 	
 	 	//监听表格复选框选择

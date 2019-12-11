@@ -84,8 +84,6 @@ layui.use(['form', 'layer', 'table', 'util', 'mcfish'], function () {
                     return mcfish.toMoney(d.budgetPriceSum);
              	 }
             }
-//          ,{field: 'status', title: '状态', width:100, templet: "#statusTpl" }
-//          ,{field: 'userName', title: '记录者'}
             ,{field: 'createTime', title: '记录时间', minWidth:160, templet: function (d) {
                     return util.toDateString(d.createTime);
                 }

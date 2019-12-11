@@ -268,9 +268,12 @@ table.on('toolbar(currentTableFilter)', function(obj){
 
 
 	function getTotal(){
- 		mcfish.get("project/getMoneyTotal", {projectId:projectId}, function() {
+ 		mcfish.get("project/getMoneyTotal", {projectId:projectId}, function(res) {
+ 			$(".yusuanTotal").html(res.data.yusuanTotal==null?0:res.data.yusuanTotal/100);
+ 			$(".inTotal").html(res.data.inTotal==null?0:res.data.inTotal/100);
+ 			$(".outTotal").html(res.data.outTotal==null?0:res.data.outTotal/100);
 	 	});
  	}
-
+	getTotal();
 
 });
