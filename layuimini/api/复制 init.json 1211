@@ -26,8 +26,19 @@
             "href": "page/contract/contract.html",
             "icon": "fa fa-tachometer",
             "target": "_self"
+          },
+          {
+            "title": "收益报表",
+            "href": "page/welcome-2.html",
+            "icon": "fa fa-tachometer",
+            "target": "_self"
+          },
+          {
+            "title": "参数设定",
+            "href": "page/welcome-2.html",
+            "icon": "fa fa-tachometer",
+            "target": "_self"
           }
-        
         ]
       }]
     },
@@ -45,6 +56,12 @@
             "icon": "fa fa-dot-circle-o",
             "target": "_self"
           }]
+        },
+        {
+          "title": "维修",
+          "href": "page/icon-picker.html",
+          "icon": "fa fa-adn",
+          "target": "_self"
         },
         {
           "title": "项目录入",
@@ -81,8 +98,20 @@
               "href": "page/user/userlist.html",
               "icon": "fa fa-calendar",
               "target": "_self"
+            },
+            {
+              "title": "角色",
+              "href": "page/button.html",
+              "icon": "fa fa-calendar",
+              "target": "_self"
             }
           ]
+        },
+        {
+          "title": "系统参数",
+          "href": "page/error.html",
+          "icon": "fa fa-superpowers",
+          "target": "_self"
         }
       ]
     }

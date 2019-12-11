@@ -123,33 +123,9 @@ layui.use(['form', 'layer', 'table', 'util', 'mcfish'], function () {
     //监听工具条
     table.on('tool(moneyList)', function (obj) {
         if(obj.event === 'yes'){
-        	var data = obj.data;
-            layer.msg('确定对状态进行修改', {
-                    time: 20000 //20s后自动关闭
-                    ,btn: ['确定',  '取消']
-                    ,btnAlign: 'c'
-                    ,yes: function (index) {
-                        data.status = 1;
-                        editAdsStatus(data, index);
-                    }
-                    ,btn2: function () {
-                        return true;
-                    }
-                });
+        	
         }else if(obj.event === 'no'){
-        	var data = obj.data;
-            layer.msg('确定对状态进行修改', {
-                    time: 20000 //20s后自动关闭
-                    ,btn: ['确定',  '取消']
-                    ,btnAlign: 'c'
-                    ,yes: function (index) {
-                        data.status = 2;
-                        editAdsStatus(data, index);
-                    }
-                    ,btn2: function () {
-                        return true;
-                    }
-                });
+        	
         }else if(obj.event === 'edit'){
         	
             layer.open({

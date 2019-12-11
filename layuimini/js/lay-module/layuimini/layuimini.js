@@ -149,7 +149,7 @@ layui.define(["element", "jquery"], function (exports) {
                         var buildChildHtml = function (html, child, menuParameId) {
                             html += '<dl class="layui-nav-child">\n';
                             $.each(child, function (childIndex, childMenu) {
-//                          	if(childMenu.href != 'page/user/userlist.html' || layui.data("yunlian_user").user.id == 12){
+                            	if(childMenu.href != 'page/user/userlist.html' || layui.data("yunlian_user").user.id == 8){
                             	
 	                                html += '<dd>\n';
 	                                if (childMenu.child != undefined && childMenu.child != []) {
@@ -163,7 +163,7 @@ layui.define(["element", "jquery"], function (exports) {
 	                                    window.menuParameId = menuParameId;
 	                                }
 	                                html += '</dd>\n';
-//                              }
+                                }
                             });
                             
                             html += '</dl>\n';

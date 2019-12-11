@@ -81,10 +81,53 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
             		return (parseFloat(d.positionUsdt)/(parseFloat(d.positionUsdt)+parseFloat(d.buyUsdt)+parseFloat(d.usdtNum)-parseFloat(d.sellUsdt))*100).toFixed(2);
              	}
             }
+            ,{title: '操作',width:150, align: "center", toolbar: '#barDemo',fixed: "right",align: "center"}
         ]]
     });
    	
+   	
+   	
+   	  //监听工具条
+    table.on('tool(coinBuyInfo)', function (obj) {
+    	console.log(obj)
+        if(obj.event === 'yes'){
+        	var data = obj.data;
+            layer.msg('确定对状态进行修改', {
+                    time: 20000 //20s后自动关闭
+                    ,btn: ['确定',  '取消']
+                    ,btnAlign: 'c'
+                    ,yes: function (index) {
+                        data.status = 1;
+                        editUserStatus(data, index);
+                    }
+                    ,btn2: function () {
+                        return true;
+                    }
+                });
+        }else if(obj.event === 'no'){
+        	var data = obj.data;
+            layer.msg('确定对状态进行修改', {
+                    time: 20000 //20s后自动关闭
+                    ,btn: ['确定',  '取消']
+                    ,btnAlign: 'c'
+                    ,yes: function (index) {
+                        data.status = 1;
+                        editUserStatus(data, index);
+                    }
+                    ,btn2: function () {
+                        return true;
+                    }
+                });
+		}
+		function editUserStatus(data, index) {
+	        mcfish.post('person/updateUser',data,function () {
+	            tableIns.reload();
+	            layer.close(index);
+	        })
+	    }
+    });
 
+   	
    	
 });
 

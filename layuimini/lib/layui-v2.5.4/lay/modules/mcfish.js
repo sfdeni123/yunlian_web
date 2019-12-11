@@ -245,6 +245,23 @@ layui.define('jquery', function(exports) {
 			   }
 			   return flag;
 		}
+		,getMoney:function(money,fix){
+			if(fix == undefined || fix == null) {
+				fix = 2
+			}
+			if(money == 'undefined' || money == null ||
+				money == 'null' || money == undefined) {
+				return '0.00'+"元";
+			}
+			money = parseFloat(money) / 100;
+			if(money > 10000){
+				money = money/10000;
+				return money.toFixed(fix)+"万元";
+			}else{
+				return money.toFixed(fix)+"元";
+			}
+			
+		}
 	};
 	exports('mcfish', mcfish);
 });

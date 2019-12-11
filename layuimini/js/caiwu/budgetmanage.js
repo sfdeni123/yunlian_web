@@ -64,7 +64,7 @@ layui.use(['form', 'table', 'laydate','mcfish','util'], function () {
                     width: 100,
                     title: '单价',
                     templet: function (d) {
-                    	return mcfish.toMoney(d.budgetPrice);
+                    	return mcfish.getMoney(d.budgetPrice);
              	 	}
                 },
                 {
@@ -77,7 +77,7 @@ layui.use(['form', 'table', 'laydate','mcfish','util'], function () {
                     width: 120,
                     title: '合计',
                     templet: function (d) {
-                    	return mcfish.toMoney(d.budgetPriceSum);
+                    	return mcfish.getMoney(d.budgetPriceSum);
              	 	}
                 },
                 {
@@ -269,9 +269,9 @@ table.on('toolbar(currentTableFilter)', function(obj){
 
 	function getTotal(){
  		mcfish.get("project/getMoneyTotal", {projectId:projectId}, function(res) {
- 			$(".yusuanTotal").html(res.data.yusuanTotal==null?0:res.data.yusuanTotal/100);
- 			$(".inTotal").html(res.data.inTotal==null?0:res.data.inTotal/100);
- 			$(".outTotal").html(res.data.outTotal==null?0:res.data.outTotal/100);
+ 			$(".yusuanTotal").html(mcfish.getMoney(res.data.yusuanTotal));
+ 			$(".inTotal").html(mcfish.getMoney(res.data.inTotal));
+ 			$(".outTotal").html(mcfish.getMoney(res.data.outTotal));
 	 	});
  	}
 	getTotal();
