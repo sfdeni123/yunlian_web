@@ -64,8 +64,8 @@
           "target": "_self"
         },
         {
-          "title": "矿场",
-          "href": "page/color-select.html",
+          "title": "项目录入",
+          "href": "page/caiwu/investproject.html",
           "icon": "fa fa-dashboard",
           "target": "_self"
         },
@@ -100,7 +100,7 @@
           "target": "",
           "child": [{
               "title": "用户",
-              "href": "page/button.html",
+              "href": "page/user/userlist.html",
               "icon": "fa fa-calendar",
               "target": "_self"
             },

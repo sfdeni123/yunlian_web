@@ -149,19 +149,23 @@ layui.define(["element", "jquery"], function (exports) {
                         var buildChildHtml = function (html, child, menuParameId) {
                             html += '<dl class="layui-nav-child">\n';
                             $.each(child, function (childIndex, childMenu) {
-                                html += '<dd>\n';
-                                if (childMenu.child != undefined && childMenu.child != []) {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>';
-                                    html = buildChildHtml(html, childMenu.child, menuParameId);
-                                } else {
-//                              	if(menuParameId == 1)
-//                              		continue;
-                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.href + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>\n';
-                                    menuParameId++;
-                                    window.menuParameId = menuParameId;
-                                }
-                                html += '</dd>\n';
+//                          	if(childMenu.href != 'page/user/userlist.html' || layui.data("yunlian_user").user.id == 12){
+                            	
+	                                html += '<dd>\n';
+	                                if (childMenu.child != undefined && childMenu.child != []) {
+	                                    html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>';
+	                                    html = buildChildHtml(html, childMenu.child, menuParameId);
+	                                } else {
+	//                              	if(menuParameId == 1)
+	//                              		continue;
+	                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.href + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>\n';
+	                                    menuParameId++;
+	                                    window.menuParameId = menuParameId;
+	                                }
+	                                html += '</dd>\n';
+//                              }
                             });
+                            
                             html += '</dl>\n';
                             return html;
                         };

@@ -1,4 +1,4 @@
- layui.use(['form', 'table', 'laydate', 'mcfish', 'util'], function() {
+ layui.use(['form', 'table', 'laydate', 'mcfish', 'util','layuimini'], function() {
 	 	var $ = layui.jquery,
 		 		form = layui.form,
 		 		mcfish = layui.mcfish,
@@ -103,10 +103,16 @@
 		 		if(data.field.id != null && data.field.id != undefined && data.field.id != "") {
 		 				requestUrl = "project/updateProject";
 		 		}
-		 		mcfish.post(requestUrl, data.field, function() {
-		 				layer.close(index);
-		 				tableIns.reload();
-		 		});
+//		 		mcfish.post(requestUrl, data.field, function() {
+//		 				layer.close(index);
+//		 				tableIns.reload();
+//		 				if(requestUrl == "project/addProject"){
+//		 						mcfish.get("system/getInit",{},function(res){
+//									layuimini.init($.parseJSON(res.data));
+//								});
+//      
+//		 				}
+//		 		});
 	 	});
 	
 	 	//关闭弹窗
@@ -160,5 +166,7 @@
 		 			});
 		 		}
 	 	});
-
+	 	
+	 	
+	 
  });

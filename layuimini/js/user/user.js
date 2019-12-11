@@ -38,18 +38,47 @@ layui.use(['form', 'layer', 'table', 'laydate','util', 'mcfish'], function () {
         ,defaultToolbar: ["filter"]
         ,id: "coinBuyList"
         ,cols: [[
-            {field: 'name', title: '姓名', width: 80,templet: function (d) {
-                    return (d.value*1).toFixed(3);
-             	 }
+            {field: 'name', title: '姓名', width: 80
             }
-            ,{field: 'usdtNum', title: 'USDT余额', width:80,templet:function(d){
-            		return parseFloat(d.num).toFixed(3);
-           		}
+            ,{field: 'positionUsdt', title: '开仓USDT', width:100,templet: function (d) {
+            	if(d.coin == null){
+            		return "";
+            	}
+            	return d.coin+d.positionUsdt;
             }
-            ,{field: 'buyUsdt', title: '补仓USDT', width:100}
-            ,{field: 'positionUsdt', title: '开仓USDT', width:70}
+            }
+            ,{field: 'liquidationPrice', title: '爆仓价', width:100}
+            ,{field: 'usdtNum', title: 'USDT余额', width:100,templet: function (d) {
+            	if(d.usdtNum == null){
+            		return 0;
+            	}else{
+            		return d.usdtNum;
+            	}
+            }
+            }
+            ,{field: 'buyUsdt', title: '补仓USDT', width:100,templet: function (d) {
+            	if(d.buyUsdt == null){
+            		return 0;
+            	}else{
+            		return d.buyUsdt;
+            	}
+            }
+            }
+            ,{field: 'sellUsdt', title: '卖出USDT', width:100,templet: function (d) {
+            	if(d.sellUsdt == null){
+            		return 0;
+            	}else{
+            		return (d.sellUsdt*1).toFixed(2);
+            	}
+            	
+            }
+            }
+            
             ,{field: 'positionUsdt', title: '开仓占比', width: 120,templet: function (d) {
-            		return parseFloat(positionUsdt)/(parseFloat(positionUsdt)+parseFloat(buyUsdt)+parseFloat(usdtNum))*100;
+	            	if(d.coin == null){
+	            		return "";
+	            	}
+            		return (parseFloat(d.positionUsdt)/(parseFloat(d.positionUsdt)+parseFloat(d.buyUsdt)+parseFloat(d.usdtNum)-parseFloat(d.sellUsdt))*100).toFixed(2);
              	}
             }
         ]]

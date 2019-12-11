@@ -1,9 +1,5 @@
  //声明全局数据，当前页面数据，和新增数据/编辑数据
- 
-//const myurl = $tools.parseURL(window.location.href);
-//var typeId = parseInt(myurl.params["typeId"]);
 var tabledatas = [];
-var projectId = 2;
 //layui
 layui.use(['form', 'table', 'laydate','mcfish','util'], function () {
     var $ = layui.jquery,
@@ -12,7 +8,7 @@ layui.use(['form', 'table', 'laydate','mcfish','util'], function () {
         util = layui.util,
         table = layui.table;
     var laydate = layui.laydate;
-	var jsonurl = mcfish.getReqUri() + '/project/getPrijectItemList?projectId=2';
+	
     laydate.render({
         elem: '#createTime' //指定元素
     });
@@ -22,7 +18,8 @@ layui.use(['form', 'table', 'laydate','mcfish','util'], function () {
     laydate.render({
         elem: '#endTime' //指定元素
     });
-
+    var myurl = mcfish.parseURL(window.location.href);
+	var projectId = myurl.params["projectId"];
 
 	var mywidth = mcfish.IsPC()?"800px":window.screen.width+"px";
 	var myheight = mcfish.IsPC()?"500px":window.screen.height/1.8+"px";
@@ -36,7 +33,7 @@ layui.use(['form', 'table', 'laydate','mcfish','util'], function () {
         ,defaultToolbar: ["filter"]
         ,id: "currentTableId"
         ,toolbar:"#infoBar"
-        ,url: mcfish.getReqUri() + '/project/getPrijectItemList'
+        ,url: mcfish.getReqUri() + '/project/getProjectItemList'
         //url: '../../api/tablejson.json', //假数据
         ,cols: [
             [
@@ -202,6 +199,7 @@ table.on('toolbar(currentTableFilter)', function(obj){
             requestUrl = "project/updateProjectItem";
         }
         data.field.budgetPrice = data.field.budgetPrice * 100;
+        data.field.projectId = projectId;
         mcfish.post(requestUrl,data.field,function () {
             layer.close(index);
 			table.reload('currentTableId');
@@ -267,5 +265,12 @@ table.on('toolbar(currentTableFilter)', function(obj){
             });
         }
     });
+
+
+	function getTotal(){
+ 		mcfish.get("project/getMoneyTotal", {projectId:projectId}, function() {
+	 	});
+ 	}
+
 
 });

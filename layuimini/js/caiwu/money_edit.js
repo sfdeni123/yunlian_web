@@ -147,11 +147,15 @@ layui.use(['form','layer','mcfish','laydate', 'upload'],function(){
     
     form.on("submit(save)",function (data) {
 		
-        data.field.image = imageUrl;
+		if(imageUrl != '' && imageUrl != null && imageUrl != undefined){
+			data.field.image = imageUrl;
+		}
+        
 		data.field.budgetPriceSum = data.field.budgetPriceSum *100;
-        var requestUrl = "project/editMoney";
-        if(!parentData){
-            requestUrl = "project/addMoney";
+        var requestUrl = "project/addMoney";
+        if(parentData){
+        	data.field.moneyId = data.field.id;
+            requestUrl = "project/editMoney";
         }
 
         mcfish.post(requestUrl,data.field,function () {
