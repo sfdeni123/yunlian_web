@@ -65,6 +65,12 @@
               "target": "_self"
             }
           ]
+        },
+        {
+          "title": "矿机监控",
+          "href": "page/poolin/main.html",
+          "icon": "fa fa-dashboard",
+          "target": "_self"
         }
       ]
     },
